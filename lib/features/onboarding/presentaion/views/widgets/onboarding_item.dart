@@ -1,9 +1,11 @@
 import 'package:fetra/core/utils/colors/colors.dart';
 import 'package:fetra/core/utils/constants.dart';
 import 'package:fetra/features/onboarding/presentaion/views/widgets/progress_dots.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../../core/shared_widgets/custom_button.dart';
+import '../../../../../core/utils/assets/assets.dart';
 import '../../../../../core/utils/services/local_services/cache_helper.dart';
 import '../../../../../core/utils/text_styles/styles.dart';
 
@@ -33,58 +35,74 @@ class OnBoardingItem extends StatelessWidget {
     return Column(
       children: [
         Expanded(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.end,
+          child: Stack(
             children: [
-              SizedBox(
-                  width: MediaQuery.of(context).size.height * .5,
-                  height: MediaQuery.of(context).size.height * .5,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      image,
-                    ],
-                  )),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * .04,
-              ),
-              Text(
-                title,
-                style: Styles.onboardingTitleText(context),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * .08,
-              ),
-              Padding(
-                padding: EdgeInsets.symmetric(
-                    horizontal: AppConstants.width20(context)),
-                child: DefaultButton(
-                  onPress: () {
-                    if(isLastScreen)
-                              {
-                                CacheHelper.saveData(key: "onBoarding", value: true);
-                                GoRouter.of(context).go("/loginView");
-                              }else{
-                                onNextPressed(currentScreenNo + 1);
-                              }
-                  },
-                  text: 'ابدأ',
-                  borderRadius: AppConstants.sp10(context),
-                  backgroundColor: Colors.white,
-                  textColor: AppColors.primaryColor,
+              Transform.translate(
+                offset: Offset(0,-MediaQuery.of(context).size.height * .1),
+                child: Container(
+                  height: MediaQuery.of(context).size.height * .56,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage(AssetData.authBack),
+                        fit: BoxFit.cover
+                    ),
+                  ),
                 ),
               ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * .08,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+              Column(
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  for (int index = 0; index < noOfScreen; index++)
-                    ProgressDots(
-                      isActiveScreen: (index == currentScreenNo) ? true : false,
-                    )
+                  SizedBox(
+                      width: MediaQuery.of(context).size.height * .5,
+                      height: MediaQuery.of(context).size.height * .5,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          image,
+                        ],
+                      )),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * .04,
+                  ),
+                  Text(
+                    title,
+                    style: Styles.onboardingTitleText(context),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * .08,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: AppConstants.width20(context)),
+                    child: DefaultButton(
+                      onPress: () {
+                        if(isLastScreen)
+                                  {
+                                    CacheHelper.saveData(key: "onBoarding", value: true);
+                                    GoRouter.of(context).go("/introAuthView");
+                                  }else{
+                                    onNextPressed(currentScreenNo + 1);
+                                  }
+                      },
+                      text: 'ابدأ',
+                      borderRadius: AppConstants.sp10(context),
+                      backgroundColor: Colors.white,
+                      textColor: AppColors.primaryColor,
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * .08,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      for (int index = 0; index < noOfScreen; index++)
+                        ProgressDots(
+                          isActiveScreen: (index == currentScreenNo) ? true : false,
+                        )
+                    ],
+                  ),
                 ],
               ),
             ],

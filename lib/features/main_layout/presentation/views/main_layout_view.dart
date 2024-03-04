@@ -1,4 +1,5 @@
 
+import 'package:fetra/features/home/presentation/views/home_view.dart';
 import 'package:fetra/features/main_layout/presentation/views/widgets/bottom_nav_bar.dart';
 import 'package:fetra/features/main_layout/view_model/change_nav_bar_status/change_nav_bar_status_cubit.dart';
 import 'package:flutter/material.dart';
@@ -11,7 +12,7 @@ class MainLayoutView extends StatelessWidget {
   MainLayoutView({super.key});
 
   List<Widget> screens = [
-    const SizedBox(),
+    const HomeView(),
     const SizedBox(),
     const SizedBox(),
     const SizedBox(),
@@ -38,12 +39,12 @@ class MainLayoutView extends StatelessWidget {
               child: AppBar(
                 elevation: 0,
                 systemOverlayStyle:  const SystemUiOverlayStyle(
-                  statusBarColor: Colors.white,
-                  statusBarIconBrightness:Brightness.dark,
+                  statusBarColor: Color(0xff4CAD73), // <-- SEE HERE
+                  statusBarIconBrightness: Brightness.light, //<-- For Android SEE HERE (dark icons)
                   systemNavigationBarColor: Colors.white,
-                  statusBarBrightness: Brightness.light,
+                  statusBarBrightness: Brightness.dark, //<-- For iOS SEE HERE (dark icons)
                 ),
-              ),
+              )
           ),
           body: Column(
             children: [

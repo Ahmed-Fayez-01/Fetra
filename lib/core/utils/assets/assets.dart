@@ -1,10 +1,23 @@
 class AssetData {
   static const logo="assets/images/logo.png";
+  static const calc="assets/images/calculator.png";
+  static const calc2="assets/images/calculator2.png";
+  static const creator="assets/images/creator.png";
+  static const papers="assets/images/paper.png";
+  static const trainers="assets/images/development.png";
+  static const google="assets/images/google.svg";
+  static const search="assets/images/search.svg";
+  static const notification="assets/images/notification.svg";
   static const onBoarding="assets/images/onboarding.png";
+  static const offer="assets/images/offer.png";
   static const authIcon="assets/images/auth_icon.png";
+  static const introAuthIcon="assets/images/intro_auth_icon.png";
+  static const authBack="assets/images/auth_back.png";
+  static const homeBack="assets/images/home_back.png";
   static const home="assets/images/home.svg";
   static const cart="assets/images/cart.svg";
   static const profile="assets/images/profile.svg";
   static const users="assets/images/users.svg";
+  static const more="assets/images/more.svg";
   static const arrowLeft="assets/images/arrow_left.svg";
 }

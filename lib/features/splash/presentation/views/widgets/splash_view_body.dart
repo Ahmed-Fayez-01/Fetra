@@ -23,7 +23,7 @@ class _SplashViewBodyState extends State<SplashViewBody> {
             GoRouter.of(context).pushReplacement("/mainLayoutView");
           }else
             {
-              GoRouter.of(context).pushReplacement("/loginView");
+              GoRouter.of(context).pushReplacement("/introAuthView");
             }
 
       } else {

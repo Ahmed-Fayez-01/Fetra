@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:fetra/features/auth/presentation/view_model/login_cubit/login_cubit.dart';
 import 'package:fetra/features/auth/presentation/view_model/register_cubit/register_cubit.dart';
+import 'package:fetra/features/blogs/presentation/view_models/change_tabs_cubit/change_tabs_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -41,6 +42,7 @@ class Fetra extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (context) => ChangeNavBarStatusCubit()),
+        BlocProvider(create: (context) => ChangeTabsCubit()),
         BlocProvider(
             create: (context) => LoginCubit(
               getIt.get<AuthRepoImpl>(),

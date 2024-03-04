@@ -18,7 +18,7 @@ class OnBoardingView extends StatelessWidget {
           child: AppBar(
             elevation: 0,
             systemOverlayStyle:  const SystemUiOverlayStyle(
-              statusBarColor: AppColors.primarySwatchColor,
+              statusBarColor: Color(0xff53B97C),
               // <-- SEE HERE
               statusBarIconBrightness: Brightness.light,
               //<-- For Android SEE HERE (dark icons)

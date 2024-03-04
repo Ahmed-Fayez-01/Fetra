@@ -1,6 +1,8 @@
 import 'dart:async';
 
 import 'package:easy_localization/easy_localization.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
@@ -70,7 +72,22 @@ class _LoginViewState extends State<LoginView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: PreferredSize(
+          preferredSize: const Size.fromHeight(0.0), // here the desired height
+          child: AppBar(
+            elevation: 0,
+            systemOverlayStyle:  const SystemUiOverlayStyle(
+              statusBarColor: Color(0xff53B97C),
+              // <-- SEE HERE
+              statusBarIconBrightness: Brightness.light,
+              //<-- For Android SEE HERE (dark icons)
+              systemNavigationBarColor:Colors.white,
+              statusBarBrightness:
+              Brightness.dark, //<-- For iOS SEE HERE (dark icons)
+            ),
+          )),
       body: Stack(
+
         children: [
           Column(
             children: [
@@ -81,18 +98,21 @@ class _LoginViewState extends State<LoginView> {
                     children: [
                       Stack(
                         children: [
-                          Container(
-                            height: MediaQuery.of(context).size.height * .4,
-                            decoration: BoxDecoration(
-                                color: AppColors.primaryColor,
-                                borderRadius: BorderRadius.only(
-                                    bottomLeft: Radius.circular(
-                                        MediaQuery.of(context).size.height *
-                                            .2))),
+                          Transform.translate(
+                            offset: Offset(0,-MediaQuery.of(context).size.height * .1),
+                            child: Container(
+                              height: MediaQuery.of(context).size.height * .5,
+                              decoration: const BoxDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage(AssetData.authBack),
+                                    fit: BoxFit.cover
+                                  ),
+                                 ),
+                            ),
                           ),
                           Transform.translate(
                             offset: Offset(-AppConstants.width20(context),
-                                MediaQuery.of(context).size.height * .07),
+                                MediaQuery.of(context).size.height * .04),
                             child: Column(
                               children: [
                                 Padding(
@@ -139,10 +159,10 @@ class _LoginViewState extends State<LoginView> {
                             ),
                           ),
                           Positioned(
-                            bottom: MediaQuery.of(context).size.width * .15,
-                            right: MediaQuery.of(context).size.width * .15,
+                            bottom: MediaQuery.of(context).size.width * .35,
+                            right: MediaQuery.of(context).size.width * .25,
                             child: Text(
-                              "Welcome Back!",
+                              "Sign In",
                               style: TextStyle(
                                 fontSize:
                                     MediaQuery.of(context).size.height * .022,
@@ -154,197 +174,197 @@ class _LoginViewState extends State<LoginView> {
                           ),
                         ],
                       ),
-                      SizedBox(
-                        height: AppConstants.height30(context),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                            horizontal: AppConstants.width20(context)),
-                        child: Column(
-                          children: [
-                            Form(
-                              key: formKeyLogin,
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "email".tr(),
-                                        style: TextStyle(
-                                            color: const Color(0xff333333),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                .016),
-                                      ),
-                                      SizedBox(
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                .008,
-                                      ),
-                                      DefaultTextFormField(
-                                        textInputType: TextInputType.text,
-                                        controller: emailOrPhone,
-                                        maxLines: 1,
-                                        borderRadius:
-                                            MediaQuery.of(context).size.height *
-                                                .01,
-                                        borderSideWidth: 0,
-                                        validation: (String? value) {
-                                          if (value!.isEmpty) {
-                                            return "ValidationEmptyText".tr();
-                                          }
-                                        },
-                                        contentPaddingHorizontal:
-                                            AppConstants.width20(context),
-                                        contentPaddingVertical:
-                                            AppConstants.height15(context),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: AppConstants.height10(context),
-                                  ),
-                                  Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        "Password",
-                                        style: TextStyle(
-                                            color: const Color(0xff333333),
-                                            fontWeight: FontWeight.w500,
-                                            fontSize: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                .016),
-                                      ),
-                                      SizedBox(
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                .008,
-                                      ),
-                                      DefaultTextFormField(
-                                        textInputType: TextInputType.text,
-                                        controller: password,
-                                        isPassword: true,
-                                        maxLines: 1,
-                                        validation: (String? value) {
-                                          if (value!.isEmpty) {
-                                            return "ValidationEmptyText".tr();
-                                          }
-                                        },
-                                        borderRadius:
-                                            MediaQuery.of(context).size.height *
-                                                .01,
-                                        borderSideWidth: 0,
-                                        contentPaddingHorizontal:
-                                            AppConstants.width20(context),
-                                        contentPaddingVertical:
-                                            AppConstants.height15(context),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: AppConstants.height15(context),
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    children: [
-                                      InkWell(
-                                        onTap: () {},
-                                        child: Text(
-                                          "forgetPasswordText".tr(),
-                                          style: Styles.onboardingTitleText(
-                                                  context)
-                                              .copyWith(
-                                                  fontSize:
-                                                      MediaQuery.of(context)
-                                                              .size
-                                                              .height *
-                                                          .014,
-                                                  color:
-                                                      const Color(0xff0EB177),
-                                                  fontWeight: FontWeight.w400),
+                      Transform.translate(
+                        offset: Offset(0,-MediaQuery.of(context).size.height * .08),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                              horizontal: AppConstants.width20(context)),
+                          child: Column(
+                            children: [
+                              Form(
+                                key: formKeyLogin,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "email".tr(),
+                                          style: TextStyle(
+                                              color: const Color(0xff333333),
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  .016),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                  SizedBox(
-                                    height: AppConstants.height15(context),
-                                  ),
-                                  BlocConsumer<LoginCubit, LoginState>(
-                                    builder: (BuildContext context, state) {
-                                      return DefaultButton(
-                                        height:
-                                            MediaQuery.of(context).size.height *
-                                                .018,
-                                        onPress: () {
-                                          GoRouter.of(context).push("/mainLayoutView");
-                                        },
-                                        text: 'signin'.tr(),
-                                        fontFamily: "Cairo",
-                                        fontSize:
-                                            MediaQuery.of(context).size.height *
-                                                .02,
-                                        borderRadius:
-                                            MediaQuery.of(context).size.height *
-                                                .01,
-                                      );
-                                    },
-                                    listener:
-                                        (BuildContext context, state) async {
-                                      if (state is UserLoginSuccessState) {
-                                      } else if (state is UserLoginErrorState) {
-                                      } else if (state
-                                          is UserLoginLoadingState) {}
-                                    },
-                                  ),
-                                  SizedBox(
-                                    height: AppConstants.height15(context),
-                                  ),
-                                  Row(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Text(
-                                        "Don’t have an account? ",
-                                        style: TextStyle(
-                                            fontSize: MediaQuery.of(context)
-                                                    .size
-                                                    .height *
-                                                .014,
-                                            fontWeight: FontWeight.w400,
-                                            fontFamily: "Cairo",
-                                            color: const Color(0xff0EB177)),
-                                      ),
-                                      InkWell(
-                                        onTap: () {
-                                          GoRouter.of(context)
-                                              .push("/registerView");
-                                        },
-                                        child: Text(
-                                          "Register",
+                                        SizedBox(
+                                          height:
+                                              MediaQuery.of(context).size.height *
+                                                  .008,
+                                        ),
+                                        DefaultTextFormField(
+                                          textInputType: TextInputType.text,
+                                          controller: emailOrPhone,
+                                          maxLines: 1,
+                                          borderRadius:
+                                              MediaQuery.of(context).size.height *
+                                                  .01,
+                                          borderSideWidth: 0,
+                                          validation: (String? value) {
+                                            if (value!.isEmpty) {
+                                              return "ValidationEmptyText".tr();
+                                            }
+                                          },
+                                          contentPaddingHorizontal:
+                                              AppConstants.width20(context),
+                                          contentPaddingVertical:
+                                              AppConstants.height15(context),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: AppConstants.height10(context),
+                                    ),
+                                    Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Text(
+                                          "Password",
+                                          style: TextStyle(
+                                              color: const Color(0xff333333),
+                                              fontWeight: FontWeight.w500,
+                                              fontSize: MediaQuery.of(context)
+                                                      .size
+                                                      .height *
+                                                  .016),
+                                        ),
+                                        SizedBox(
+                                          height:
+                                              MediaQuery.of(context).size.height *
+                                                  .008,
+                                        ),
+                                        DefaultTextFormField(
+                                          textInputType: TextInputType.text,
+                                          controller: password,
+                                          isPassword: true,
+                                          maxLines: 1,
+                                          validation: (String? value) {
+                                            if (value!.isEmpty) {
+                                              return "ValidationEmptyText".tr();
+                                            }
+                                          },
+                                          borderRadius:
+                                              MediaQuery.of(context).size.height *
+                                                  .01,
+                                          borderSideWidth: 0,
+                                          contentPaddingHorizontal:
+                                              AppConstants.width20(context),
+                                          contentPaddingVertical:
+                                              AppConstants.height15(context),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: AppConstants.height15(context),
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        InkWell(
+                                          onTap: () {},
+                                          child: Text(
+                                            "forgetPasswordText".tr(),
+                                            style: Styles.onboardingTitleText(
+                                                    context)
+                                                .copyWith(
+                                                    fontSize:
+                                                        MediaQuery.of(context)
+                                                                .size
+                                                                .height *
+                                                            .014,
+                                                    color:
+                                                        const Color(0xff0EB177),
+                                                    fontWeight: FontWeight.w400),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    SizedBox(
+                                      height: AppConstants.height15(context),
+                                    ),
+                                    BlocConsumer<LoginCubit, LoginState>(
+                                      builder: (BuildContext context, state) {
+                                        return DefaultButton(
+                                          height:
+                                              MediaQuery.of(context).size.height *
+                                                  .018,
+                                          onPress: () {
+                                            GoRouter.of(context).push("/mainLayoutView");
+                                          },
+                                          text: 'signin'.tr(),
+                                          fontFamily: "Cairo",
+                                          fontSize:
+                                              MediaQuery.of(context).size.height *
+                                                  .02,
+                                          borderRadius:
+                                              MediaQuery.of(context).size.height *
+                                                  .01,
+                                        );
+                                      },
+                                      listener:
+                                          (BuildContext context, state) async {
+                                        if (state is UserLoginSuccessState) {
+                                        } else if (state is UserLoginErrorState) {
+                                        } else if (state
+                                            is UserLoginLoadingState) {}
+                                      },
+                                    ),
+                                    SizedBox(
+                                      height: AppConstants.height15(context),
+                                    ),
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          "Don’t have an account? ",
                                           style: TextStyle(
                                               fontSize: MediaQuery.of(context)
                                                       .size
                                                       .height *
                                                   .014,
-                                              fontWeight: FontWeight.w700,
+                                              fontWeight: FontWeight.w400,
                                               fontFamily: "Cairo",
                                               color: const Color(0xff0EB177)),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
+                                        InkWell(
+                                          onTap: () {
+                                            GoRouter.of(context)
+                                                .push("/registerView");
+                                          },
+                                          child: Text(
+                                            "Register",
+                                            style: TextStyle(
+                                                fontSize: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    .014,
+                                                fontWeight: FontWeight.w700,
+                                                fontFamily: "Cairo",
+                                                color: const Color(0xff0EB177)),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       )
                     ],
