@@ -3,6 +3,7 @@ import 'package:fetra/features/home/presentation/views/home_view.dart';
 import 'package:fetra/features/main_layout/presentation/views/widgets/bottom_nav_bar.dart';
 import 'package:fetra/features/main_layout/view_model/change_nav_bar_status/change_nav_bar_status_cubit.dart';
 import 'package:fetra/features/profile/presentation/views/profile_view.dart';
+import 'package:fetra/features/store/presentation/views/store_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,7 +15,7 @@ class MainLayoutView extends StatelessWidget {
 
   List<Widget> screens = [
     const HomeView(),
-    const SizedBox(),
+    const StoreView(),
     const SizedBox(),
     const ProfileView(),
   ];

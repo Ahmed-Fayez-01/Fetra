@@ -14,6 +14,7 @@ import 'core/utils/theme/app_theme.dart';
 
 import 'features/auth/data/repos/auth_repo_impl.dart';
 import 'features/main_layout/view_model/change_nav_bar_status/change_nav_bar_status_cubit.dart';
+import 'features/store/presentation/view_models/change_tabs_image_cubit/change_tabs_image_cubit.dart';
 
 
 Future main() async {
@@ -43,6 +44,7 @@ class Fetra extends StatelessWidget {
       providers: [
         BlocProvider(create: (context) => ChangeNavBarStatusCubit()),
         BlocProvider(create: (context) => ChangeTabsCubit()),
+        BlocProvider(create: (context) => ChangeTabsImageCubit()),
         BlocProvider(
             create: (context) => LoginCubit(
               getIt.get<AuthRepoImpl>(),
