@@ -11,6 +11,7 @@ class DefaultTextFormField extends StatefulWidget {
   int? maxLines;
   bool isEnabled;
   bool required;
+  bool showEye;
   bool isPassword;
   bool isFilled;
   bool hasBorder;
@@ -46,6 +47,7 @@ class DefaultTextFormField extends StatefulWidget {
     this.autoFocus = false,
     this.readOnly = false,
     this.isFilled = false,
+    this.showEye = true,
     this.hasBorder = true,
     this.hasCons = false,
     this.labelColorActive,
@@ -102,6 +104,7 @@ class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
       obscureText: widget.isPassword && hidePassword,
       focusNode: myFocusNode,
       autofocus: widget.autoFocus,
+      cursorColor: AppColors.primaryColor,
       enabled: widget.isEnabled,
       obscuringCharacter: '●',
       controller: widget.controller,
@@ -176,7 +179,7 @@ class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
           ),
         ),
         filled: true,
-        fillColor: const Color(0xffF2F2F2),
+        fillColor:widget.fillColor ?? const Color(0xffF2F2F2),
         prefixIcon: widget.prefixIcon,
         prefixIconConstraints: widget.hasCons? BoxConstraints(
           minWidth: AppConstants.width20(context),
@@ -191,7 +194,7 @@ class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
             fontSize: MediaQuery.of(context).size.height*.02
         ),
         suffixIcon: widget.suffixIcon ?? (widget.isPassword
-            ? IconButton(
+            ? widget.showEye ? IconButton(
           onPressed: () {
             setState(() {
               hidePassword = !hidePassword;
@@ -205,7 +208,7 @@ class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
                 ? AppColors.primaryColor
                 : Colors.grey,
           ),
-        )
+        ) : null
             : null),
       ),
     );

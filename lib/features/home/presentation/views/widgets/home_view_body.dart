@@ -1,6 +1,7 @@
 import 'package:fetra/features/blogs/presentation/views/blogs_view.dart';
 import 'package:fetra/features/fat_calculator/presentation/views/fat_calculator_view.dart';
 import 'package:fetra/features/home/presentation/views/widgets/home_item.dart';
+import 'package:fetra/features/trainers/presentation/views/trainers_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -103,7 +104,9 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                   children: [
                     Expanded(child: HomeItem(backColor: const Color(0x40F7A593), borderColor:  const Color(0xffF7A593), title: 'video clips', icon: AssetData.creator, onTap: () {  },)),
                     SizedBox(width: AppConstants.width20(context),),
-                    Expanded(child: HomeItem(backColor: const Color(0x40D3B0E0), borderColor:  const Color(0xffD3B0E0), title: 'Trainers', icon: AssetData.trainers, onTap: () {  },)),
+                    Expanded(child: HomeItem(backColor: const Color(0x40D3B0E0), borderColor:  const Color(0xffD3B0E0), title: 'Trainers', icon: AssetData.trainers, onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>const TrainersView()));
+                    },)),
                   ],
                 ),
               ),

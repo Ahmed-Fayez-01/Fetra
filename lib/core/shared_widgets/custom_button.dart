@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../utils/colors/colors.dart';
 import '../utils/constants.dart';
@@ -53,21 +54,21 @@ class DefaultButton extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Text(text,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                  color: textColor ?? Colors.white,
-                  fontWeight: FontWeight.w600,
-                  fontSize: fontSize ?? MediaQuery.of(context).size.height*.018,
-                  fontFamily: fontFamily??"Cairo")),
+          Expanded(
+            child: Text(text,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: textColor ?? Colors.white,
+                    fontWeight: FontWeight.w600,
+                    fontSize: fontSize ?? MediaQuery.of(context).size.height*.018,
+                    fontFamily: fontFamily??"Cairo")),
+          ),
           SizedBox(width: AppConstants.width5(context),),
           if (icon != null) ...[
-            const SizedBox(
-              width: 5,
-            ),
+
             icon!,
             const SizedBox(
-              width: 3,
+              width: 30,
             ),
           ],
         ],

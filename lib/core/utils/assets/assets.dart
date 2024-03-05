@@ -21,6 +21,9 @@ class AssetData {
   static const more="assets/images/more.svg";
   static const arrowLeft="assets/images/arrow_left.svg";
   static const arrowRight="assets/images/arrow_right.svg";
+  static const phone="assets/images/phone.svg";
+  static const edit="assets/images/edit.svg";
+  static const signOut="assets/images/sign_out.svg";
   static const line="assets/images/line.svg";
   static const fatCalculation="assets/images/fat_calculation.png";
   static const woman="assets/images/woman.png";
