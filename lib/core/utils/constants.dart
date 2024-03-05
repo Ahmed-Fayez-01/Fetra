@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 class AppConstants {
   static bool? hasInternet;
+  static bool hideMeasure=false;
 
   static sp10(context){
     var height=MediaQuery.of(context).size.height*.012;

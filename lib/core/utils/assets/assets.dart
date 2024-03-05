@@ -1,7 +1,7 @@
 class AssetData {
   static const logo="assets/images/logo.png";
   static const calc="assets/images/calculator.png";
-  static const calc2="assets/images/calculator2.png";
+  static const calc2="assets/images/calcuator2.png";
   static const creator="assets/images/creator.png";
   static const papers="assets/images/paper.png";
   static const trainers="assets/images/development.png";
@@ -20,4 +20,10 @@ class AssetData {
   static const users="assets/images/users.svg";
   static const more="assets/images/more.svg";
   static const arrowLeft="assets/images/arrow_left.svg";
+  static const arrowRight="assets/images/arrow_right.svg";
+  static const line="assets/images/line.svg";
+  static const fatCalculation="assets/images/fat_calculation.png";
+  static const woman="assets/images/woman.png";
+  static const man="assets/images/man.png";
+  static const videoBanner="assets/images/video_banner.png";
 }

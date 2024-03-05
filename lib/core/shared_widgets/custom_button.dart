@@ -47,7 +47,7 @@ class DefaultButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(
               borderRadius ?? 0,
             ),
-            side: BorderSide(color: AppColors.primaryColor)
+            side: BorderSide(color: hasBorder ? AppColors.primaryColor:Colors.transparent)
           )),
       onPressed: onPress,
       child: Row(

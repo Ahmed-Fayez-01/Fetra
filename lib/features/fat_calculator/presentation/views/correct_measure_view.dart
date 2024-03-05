@@ -1,11 +1,12 @@
-import 'package:fetra/core/utils/assets/assets.dart';
-import 'package:fetra/features/blogs/presentation/views/widgets/blogs_view_body.dart';
+import 'package:fetra/features/fat_calculator/presentation/views/widgets/correct_measure_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 
-class BlogsView extends StatelessWidget {
-  const BlogsView({super.key});
+import '../../../../core/utils/assets/assets.dart';
+
+class CorrectMeasureView extends StatelessWidget {
+  const CorrectMeasureView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +18,8 @@ class BlogsView extends StatelessWidget {
           systemNavigationBarColor: Colors.white,
           statusBarBrightness: Brightness.dark, //<-- For iOS SEE HERE (dark icons)
         ),
-        title: const Text("Blogs",style: TextStyle(
-          color: Colors.white
+        title: const Text("Fat Calculation",style: TextStyle(
+            color: Colors.white
         ),),
         leading: InkWell(onTap: (){
           Navigator.pop(context);
@@ -26,7 +27,7 @@ class BlogsView extends StatelessWidget {
         centerTitle: true,
         backgroundColor: const Color(0xff4CAD73),
       ),
-      body: const BlogsViewBody(),
+      body: const CorrectMeasureViewBody(),
     );
   }
 }

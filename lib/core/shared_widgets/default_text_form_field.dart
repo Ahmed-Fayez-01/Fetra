@@ -1,5 +1,6 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:fetra/core/utils/colors/colors.dart';
+import 'package:fetra/core/utils/constants.dart';
 import 'package:flutter/material.dart';
 import '../utils/text_styles/styles.dart';
 
@@ -13,6 +14,7 @@ class DefaultTextFormField extends StatefulWidget {
   bool isPassword;
   bool isFilled;
   bool hasBorder;
+  bool hasCons;
   bool autoFocus;
   bool readOnly;
   double contentPaddingVertical;
@@ -39,12 +41,13 @@ class DefaultTextFormField extends StatefulWidget {
   TextStyle? style;
 
   DefaultTextFormField({
-    Key? key,
+    super.key,
     this.isPassword = false,
     this.autoFocus = false,
     this.readOnly = false,
     this.isFilled = false,
     this.hasBorder = true,
+    this.hasCons = false,
     this.labelColorActive,
     this.required = true,
     this.isEnabled = true,
@@ -71,7 +74,7 @@ class DefaultTextFormField extends StatefulWidget {
     this.validationMsg,
     this.style,
     this.fillColor,
-  }) : super(key: key);
+  });
 
   @override
   State<DefaultTextFormField> createState() => _DefaultTextFormFieldState();
@@ -175,6 +178,10 @@ class _DefaultTextFormFieldState extends State<DefaultTextFormField> {
         filled: true,
         fillColor: const Color(0xffF2F2F2),
         prefixIcon: widget.prefixIcon,
+        prefixIconConstraints: widget.hasCons? BoxConstraints(
+          minWidth: AppConstants.width20(context),
+          minHeight: AppConstants.height20(context),
+        ):null,
         labelText: widget.labelText,
         hintText: widget.hintText,
         hintStyle:Styles.hintText(context),

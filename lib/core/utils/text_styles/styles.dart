@@ -39,9 +39,9 @@ abstract class Styles{
     fontFamily: "Cairo",
   );
   static TextStyle hintText(context) => TextStyle(
-    fontSize: MediaQuery.of(context).size.height*.015,
+    fontSize: MediaQuery.of(context).size.height*.013,
     fontWeight: FontWeight.w400,
-    color: const Color(0xffA5A5A5),
+    color: const Color(0xff595959),
     fontFamily: "Cairo",
   );
 
