@@ -50,12 +50,10 @@ class _StoreViewBodyState extends State<StoreViewBody> {
                   hintText: "Search",
                 ),
               ),
-
-
             ],
           ),
         ),
-        SizedBox(height: AppConstants.height10(context),),
+        SizedBox(height: AppConstants.height20(context),),
         const CustomTabsCategoriesWithImage(categories: ["vegetables","baked goods"],),
         SizedBox(height: AppConstants.height10(context),),
         Expanded(
@@ -70,10 +68,10 @@ class _StoreViewBodyState extends State<StoreViewBody> {
               SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   crossAxisSpacing:
-                  AppConstants.width10(
+                  AppConstants.width20(
                       context),
                   mainAxisSpacing:
-                  AppConstants.height10(
+                  AppConstants.height20(
                       context),
                   childAspectRatio: 0.66),
               itemBuilder: (context, index) {

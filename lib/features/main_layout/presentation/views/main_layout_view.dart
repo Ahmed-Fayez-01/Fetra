@@ -36,11 +36,11 @@ class MainLayoutView extends StatelessWidget {
               preferredSize: const Size.fromHeight(0.0), // here the desired height
               child: AppBar(
                 elevation: 0,
-                systemOverlayStyle:  const SystemUiOverlayStyle(
-                  statusBarColor: Color(0xff4CAD73), // <-- SEE HERE
-                  statusBarIconBrightness: Brightness.light, //<-- For Android SEE HERE (dark icons)
+                systemOverlayStyle:   SystemUiOverlayStyle(
+                  statusBarColor: cubit.currentIndex==1 ||cubit.currentIndex==3 ?Colors.white: const Color(0xff4CAD73), // <-- SEE HERE
+                  statusBarIconBrightness:cubit.currentIndex==1||cubit.currentIndex==3?Brightness.dark :Brightness.light, //<-- For Android SEE HERE (dark icons)
                   systemNavigationBarColor: Colors.white,
-                  statusBarBrightness: Brightness.dark, //<-- For iOS SEE HERE (dark icons)
+                  statusBarBrightness:cubit.currentIndex==1||cubit.currentIndex==3?Brightness.light : Brightness.dark, //<-- For iOS SEE HERE (dark icons)
                 ),
               )
           ),

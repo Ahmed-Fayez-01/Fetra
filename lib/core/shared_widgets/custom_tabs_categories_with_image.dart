@@ -20,7 +20,7 @@ class CustomTabsCategoriesWithImage extends StatelessWidget {
     return BlocBuilder<ChangeTabsImageCubit, ChangeTabsImageStates>(
         builder: (context, state) {
       return SizedBox(
-        height: MediaQuery.of(context).size.height * .11,
+        height: MediaQuery.of(context).size.height * .12,
         child: Column(
           children: [
             Expanded(
@@ -46,7 +46,7 @@ class CustomTabsCategoriesWithImage extends StatelessWidget {
                             decoration: BoxDecoration(
                               color: const Color(0x334CAD73),
                               border: Border.all(
-                                width: 3,
+                                width: 2,
                                 color: context
                                             .read<ChangeTabsImageCubit>()
                                             .selectedTab ==
@@ -95,9 +95,9 @@ class CustomTabsCategoriesWithImage extends StatelessWidget {
                                               top: Radius.circular(
                                                   AppConstants.sp30(context)))),
                                   child: SizedBox(
-                                    width: MediaQuery.of(context).size.width * .2,
+                                    width: MediaQuery.of(context).size.width * .18,
                                     height:
-                                        MediaQuery.of(context).size.width * .02,
+                                        MediaQuery.of(context).size.width * .015,
                                   ),
                                 )
                               : const SizedBox(),

@@ -12,11 +12,11 @@ void exitDialog(context) {
       context: context,
       builder: (context) => AlertDialog(
             title: Text(
-              "exit".tr(),
+              "Exit".tr(),
               textAlign: TextAlign.center,
             ),
             content: Text(
-              "exit_question".tr(),
+              "Are You Sure Exit App ?".tr(),
             ),
             actions: [
               Row(
@@ -26,7 +26,7 @@ void exitDialog(context) {
                       onPress: () {
                         exit(0);
                       },
-                      text: "exit".tr(),
+                      text: "Exit".tr(),
                       backgroundColor: AppColors.primaryColor,
                       borderRadius: AppConstants.sp10(context),
                     fontSize: MediaQuery.of(context).size.height*.018,
@@ -40,7 +40,7 @@ void exitDialog(context) {
                     onPress: () {
                       Navigator.pop(context);
                     },
-                    text: "cancel".tr(),
+                    text: "Cancel".tr(),
                         textColor: AppColors.primaryColor,
                     backgroundColor: Colors.grey.shade300,
                         borderRadius: AppConstants.sp10(context),
