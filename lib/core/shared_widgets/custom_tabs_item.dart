@@ -31,31 +31,31 @@ class CustomTabsItem extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   index==0?SizedBox(width: AppConstants.width20(context),):const SizedBox(),
-                  index==0?Container(
-                    padding: EdgeInsets.symmetric(
-                        horizontal: AppConstants.width20(context),
-                        vertical: AppConstants.height10(context)),
-                    margin: EdgeInsetsDirectional.only(
-                        end: AppConstants.width10(context)),
-                    decoration: BoxDecoration(
-                      color: context.read<ChangeTabsCubit>().selectedTab == index
-                          ? AppColors.primaryColor
-                          :const Color(0xffFAFAFA),
-                      borderRadius:
-                          BorderRadius.circular(AppConstants.width5(context)),
-                      // color:
-                    ),
-                    child: Text(
-                      "all".tr(),
-                      style: Styles.title12(context).copyWith(
-                        color: context.read<ChangeTabsCubit>().selectedTab == index
-                            ? Colors.white
-                            : const Color(0xff9A9999),
-                        fontWeight:context.read<ChangeTabsCubit>().selectedTab == index ? FontWeight.w600 :FontWeight.w500,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ):
+                  // index==0?Container(
+                  //   padding: EdgeInsets.symmetric(
+                  //       horizontal: AppConstants.width20(context),
+                  //       vertical: AppConstants.height10(context)),
+                  //   margin: EdgeInsetsDirectional.only(
+                  //       end: AppConstants.width10(context)),
+                  //   decoration: BoxDecoration(
+                  //     color: context.read<ChangeTabsCubit>().selectedTab == index
+                  //         ? AppColors.primaryColor
+                  //         :const Color(0xffFAFAFA),
+                  //     borderRadius:
+                  //         BorderRadius.circular(AppConstants.width5(context)),
+                  //     // color:
+                  //   ),
+                  //   child: Text(
+                  //     "all".tr(),
+                  //     style: Styles.title12(context).copyWith(
+                  //       color: context.read<ChangeTabsCubit>().selectedTab == index
+                  //           ? Colors.white
+                  //           : const Color(0xff9A9999),
+                  //       fontWeight:context.read<ChangeTabsCubit>().selectedTab == index ? FontWeight.w600 :FontWeight.w500,
+                  //     ),
+                  //     textAlign: TextAlign.center,
+                  //   ),
+                  // ):
                   Container(
                     padding: EdgeInsets.symmetric(
                         horizontal: AppConstants.width20(context),
@@ -71,7 +71,7 @@ class CustomTabsItem extends StatelessWidget {
                       // color:
                     ),
                     child: Text(
-                      categories[index-1],
+                      categories[index],
                       style: Styles.title12(context).copyWith(
                         color: context.read<ChangeTabsCubit>().selectedTab == index
                             ? Colors.white
@@ -85,7 +85,7 @@ class CustomTabsItem extends StatelessWidget {
               ),
             );
           },
-          itemCount: categories.length+1,
+          itemCount: categories.length,
         ),
       );
     });

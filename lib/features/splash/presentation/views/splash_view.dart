@@ -15,10 +15,10 @@ class SplashView extends StatelessWidget {
           child: AppBar(
             elevation: 0,
             systemOverlayStyle:  const SystemUiOverlayStyle(
-              statusBarColor: Color(0xff3EBF87), // <-- SEE HERE
-              statusBarIconBrightness: Brightness.light, //<-- For Android SEE HERE (dark icons)
+              statusBarColor: Colors.white, // <-- SEE HERE
+              statusBarIconBrightness: Brightness.dark, //<-- For Android SEE HERE (dark icons)
               systemNavigationBarColor: Colors.white,
-              statusBarBrightness: Brightness.dark, //<-- For iOS SEE HERE (dark icons)
+              statusBarBrightness: Brightness.light, //<-- For iOS SEE HERE (dark icons)
             ),
           )
       ),

@@ -1,5 +1,5 @@
 class AssetData {
-  static const logo="assets/images/logo.png";
+  static const logo="assets/images/onboarding.png";
   static const calc="assets/images/calculator.png";
   static const calc2="assets/images/calcuator2.png";
   static const creator="assets/images/creator.png";
@@ -9,6 +9,7 @@ class AssetData {
   static const search="assets/images/search.svg";
   static const notification="assets/images/notification.svg";
   static const onBoarding="assets/images/onboarding.png";
+  static const onBoarding2="assets/images/onboarding2.png";
   static const offer="assets/images/offer.png";
   static const authIcon="assets/images/auth_icon.png";
   static const introAuthIcon="assets/images/intro_auth_icon.png";
@@ -23,10 +24,17 @@ class AssetData {
   static const arrowRight="assets/images/arrow_right.svg";
   static const phone="assets/images/phone.svg";
   static const edit="assets/images/edit.svg";
+  static const play="assets/images/play.svg";
   static const signOut="assets/images/sign_out.svg";
   static const line="assets/images/line.svg";
   static const fatCalculation="assets/images/fat_calculation.png";
   static const woman="assets/images/woman.png";
   static const man="assets/images/man.png";
   static const videoBanner="assets/images/video_banner.png";
+  static const fruitSalad="assets/images/fruit_salad.png";
+  static const vegitablesSalad="assets/images/vegitables_salad.png";
+  static const healthSalad="assets/images/health_salad.png";
+  static const paperSalad="assets/images/paper_salad.png";
+  static const greenSalad="assets/images/green_salad.png";
+  static const giftCard="assets/images/gift_card.png";
 }

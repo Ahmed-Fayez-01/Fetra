@@ -25,7 +25,7 @@ class OnBoardingViewBody extends StatelessWidget {
                 currentScreenNo: 0,
               ),
               OnBoardingItem(
-                image: Image.asset(AssetData.onBoarding),
+                image: Image.asset(AssetData.onBoarding2),
                 title: "onBoardingTitle1".tr(),
                 noOfScreen: 3,
                 onNextPressed: changeScreen,

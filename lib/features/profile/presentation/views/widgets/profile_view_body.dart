@@ -3,6 +3,7 @@ import 'package:fetra/core/shared_widgets/custom_button.dart';
 import 'package:fetra/features/profile/presentation/views/account_info_view.dart';
 import 'package:fetra/features/profile/presentation/views/measurements_view.dart';
 import 'package:fetra/features/profile/presentation/views/sleeping_schedules_view.dart';
+import 'package:fetra/features/profile/presentation/views/subscription_view.dart';
 import 'package:fetra/features/profile/presentation/views/walking_times_view.dart';
 import 'package:fetra/features/profile/presentation/views/widgets/profile_item.dart';
 import 'package:flutter/material.dart';
@@ -93,7 +94,9 @@ class ProfileViewBody extends StatelessWidget {
           Navigator.push(context, MaterialPageRoute(builder: (context)=>const WalkingTimesView()));
         },),
         SizedBox(height: AppConstants.height10(context),),
-        ProfileItem(title: 'Subscriptions', onTap: () {  },),
+        ProfileItem(title: 'Subscriptions', onTap: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>const SubscriptionView()));
+        },),
         SizedBox(height: AppConstants.height10(context),),
         ProfileItem(title: 'My Measurements', onTap: () {
           Navigator.push(context, MaterialPageRoute(builder: (context)=>const MeasurementsView()));

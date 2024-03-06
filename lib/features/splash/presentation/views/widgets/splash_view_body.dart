@@ -38,24 +38,13 @@ class _SplashViewBodyState extends State<SplashViewBody> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Expanded(
-          child: Container(
-            decoration: const BoxDecoration(
-                gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Color(0xff3EBF87),
-                Colors.white,
-              ],
-            )),
-            child:  Center(
-              child:  Padding(
-                padding: EdgeInsets.all(AppConstants.sp30(context)),
-                child: Image.asset(
-                  AssetData.logo,
-                ),
-              )
-            ),
+          child: Center(
+            child:  Padding(
+              padding: EdgeInsets.all(AppConstants.sp30(context)),
+              child: Image.asset(
+                AssetData.logo,
+              ),
+            )
           ),
         ),
       ],
