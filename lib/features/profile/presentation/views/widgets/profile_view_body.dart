@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fetra/core/shared_widgets/custom_button.dart';
+import 'package:fetra/core/utils/services/local_services/cache_helper.dart';
 import 'package:fetra/features/profile/presentation/views/account_info_view.dart';
 import 'package:fetra/features/profile/presentation/views/measurements_view.dart';
 import 'package:fetra/features/profile/presentation/views/sleeping_schedules_view.dart';
@@ -72,13 +73,11 @@ class ProfileViewBody extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text("Ahmed Fayez",style: TextStyle(
+            Text(CacheHelper.getData(key: "name"),style: TextStyle(
                 fontWeight: FontWeight.w500,
                 color: const Color(0xff4F4F4F),
                 fontSize: MediaQuery.of(context).size.height*.024
             ),),
-            SizedBox(width: AppConstants.width10(context),),
-            SvgPicture.asset(AssetData.edit),
           ],
         ),
         SizedBox(height: AppConstants.height30(context),),

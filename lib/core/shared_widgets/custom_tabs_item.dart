@@ -1,8 +1,9 @@
 
-import 'package:easy_localization/easy_localization.dart';
+import 'package:fetra/features/blogs/presentation/view_models/get_blogs_by_id/get_blogs_by_id_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../features/blogs/data/models/category_blodg_model.dart';
 import '../../features/blogs/presentation/view_models/change_tabs_cubit/change_tabs_cubit.dart';
 import '../../features/blogs/presentation/view_models/change_tabs_cubit/change_tabs_states.dart';
 import '../utils/colors/colors.dart';
@@ -12,7 +13,7 @@ import '../utils/text_styles/styles.dart';
 class CustomTabsItem extends StatelessWidget {
   const CustomTabsItem({super.key, required this.categories});
 
-  final List<String> categories;
+  final CategoryBlogsModel categories;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +27,7 @@ class CustomTabsItem extends StatelessWidget {
             return GestureDetector(
               onTap: () {
                 context.read<ChangeTabsCubit>().changeTabs(index);
+                context.read<GetBlogsByIdCubit>().getBlogsById(id: categories.data![index].id.toString());
               },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -71,7 +73,7 @@ class CustomTabsItem extends StatelessWidget {
                       // color:
                     ),
                     child: Text(
-                      categories[index],
+                      categories.data![index].name!,
                       style: Styles.title12(context).copyWith(
                         color: context.read<ChangeTabsCubit>().selectedTab == index
                             ? Colors.white
@@ -85,7 +87,7 @@ class CustomTabsItem extends StatelessWidget {
               ),
             );
           },
-          itemCount: categories.length,
+          itemCount: categories.data!.length,
         ),
       );
     });

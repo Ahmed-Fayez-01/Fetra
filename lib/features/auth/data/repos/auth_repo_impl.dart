@@ -1,7 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:fetra/core/errors/failure.dart';
-import 'package:fetra/features/auth/data/model/countires_model.dart';
 
 import '../../../../core/utils/services/remote_services/api_service.dart';
 import '../../../../core/utils/services/remote_services/endpoints.dart';
@@ -15,12 +14,12 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future<Either<Failure, AuthModel>> loginUser(
-      {String? email, String? phone, required String password}) async {
+      {required String email, required String password,required String accountType}) async {
     try {
       var response = await apiService!.postData(endPoint: EndPoints.userLogin, data: {
         "email": email,
-        "phone": phone,
         "password": password,
+        "type_account": accountType,
       });
       var result = AuthModel.fromJson(response.data);
       return right(result);
@@ -35,29 +34,18 @@ class AuthRepoImpl implements AuthRepo {
 
   @override
   Future<Either<Failure, AuthModel>> registerUser(
-      {required String email, required String password, required String phone}) async {
+      {required String name,required String email,required String password,required String phone,required String type,required String age,required String accountType}) async {
     try {
       var response = await apiService!.postData(endPoint: EndPoints.userRegister, data: {
+        "name": name,
         "email": email,
         "password": password,
         "phone": phone,
+        "type": type,
+        "age":age,
+        "type_account":accountType
       });
       var result = AuthModel.fromJson(response.data);
-      return right(result);
-    } catch (e) {
-      if (e is DioException) {
-        return left(ServerFailure.fromDioError(e));
-      } else {
-        return left(ServerFailure(e.toString()));
-      }
-    }
-  }
-
-  @override
-  Future<Either<Failure, CountriesModel>> getCountries() async {
-    try {
-      var response = await apiService!.get(endPoint: EndPoints.getCountries);
-      var result = CountriesModel.fromJson(response.data);
       return right(result);
     } catch (e) {
       if (e is DioException) {

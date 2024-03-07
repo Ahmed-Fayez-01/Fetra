@@ -1,4 +1,5 @@
 
+import 'package:fetra/core/utils/services/local_services/cache_keys.dart';
 import 'package:fetra/features/home/presentation/views/home_view.dart';
 import 'package:fetra/features/main_layout/presentation/views/widgets/bottom_nav_bar.dart';
 import 'package:fetra/features/main_layout/view_model/change_nav_bar_status/change_nav_bar_status_cubit.dart';
@@ -24,6 +25,7 @@ class MainLayoutView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var cubit = ChangeNavBarStatusCubit.get(context);
+    print(CacheKeysManger.tokenStatus());
     return WillPopScope(
       onWillPop: () async {
         exitDialog(context);

@@ -1,12 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fetra/core/utils/assets/assets.dart';
 import 'package:fetra/core/utils/constants.dart';
+import 'package:fetra/features/blogs/data/models/blog_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shimmer/shimmer.dart';
 
 class BlogDetailsViewBody extends StatelessWidget {
-  const BlogDetailsViewBody({super.key});
-
+  const BlogDetailsViewBody({super.key, required this.instance});
+  final Data instance;
   @override
   Widget build(BuildContext context) {
     return  Column(
@@ -14,12 +16,25 @@ class BlogDetailsViewBody extends StatelessWidget {
         Stack(
           children: [
             CachedNetworkImage(
+              placeholder: (context, url) =>
+                  Shimmer.fromColors(
+                    baseColor: Colors.grey[400]!,
+                    highlightColor: Colors.grey[200]!,
+                    child:  Container(
+                      decoration: BoxDecoration(
+                        color: Colors.grey,
+                        borderRadius:
+                        BorderRadius.circular(20),
+                      ),
+                    ),
+                  ),
+              errorWidget: (context, url, error) =>
+              const Icon(Icons.error),
+              imageUrl:instance.img!,
+              fit: BoxFit.fill,
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height*.55,
-              imageUrl:"https://cdn.britannica.com/36/123536-050-95CB0C6E/Variety-fruits-vegetables.jpg",
-              fit: BoxFit.fill,
             ),
-
             Padding(
               padding: EdgeInsets.all(AppConstants.sp20(context)),
               child: InkWell(
@@ -43,7 +58,7 @@ class BlogDetailsViewBody extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text("Is healthy eating beneficial? And why?",
+              Text(instance.title!,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontWeight: FontWeight.w600,
@@ -55,7 +70,7 @@ class BlogDetailsViewBody extends StatelessWidget {
         SizedBox(height: AppConstants.height30(context),),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: AppConstants.width20(context)),
-          child: Text("Is healthy eating beneficial? Why? Is healthy eating beneficial? Why? Is healthy eating beneficial? Why? Is healthy eating beneficial? And why? Is healthy eating beneficial? Why? Is healthy eating beneficial? Why? Is healthy eating beneficial? Why? Is healthy eating beneficial? And why?",style: TextStyle(
+          child: Text(instance.desc!,style: TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: MediaQuery.of(context).size.height*.018
           ),),

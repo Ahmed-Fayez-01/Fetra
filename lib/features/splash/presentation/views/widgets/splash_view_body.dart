@@ -3,7 +3,10 @@ import 'package:fetra/core/utils/assets/assets.dart';
 import 'package:fetra/core/utils/constants.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../core/shared_widgets/custom_button.dart';
+import '../../../../../core/utils/colors/colors.dart';
 import '../../../../../core/utils/services/local_services/cache_keys.dart';
+import '../../../../../core/utils/text_styles/styles.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -14,38 +17,76 @@ class SplashViewBody extends StatefulWidget {
 
 class _SplashViewBodyState extends State<SplashViewBody> {
   @override
-  void initState() {
-    super.initState();
-    Future.delayed(const Duration(seconds: 2), () {
-      if (CacheKeysManger.onBoardingStatus()) {
-        if(CacheKeysManger.tokenStatus() != "")
-          {
-            GoRouter.of(context).pushReplacement("/mainLayoutView");
-          }else
-            {
-              GoRouter.of(context).pushReplacement("/introAuthView");
-            }
-
-      } else {
-        GoRouter.of(context).pushReplacement("/onBoardingView");
-      }
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Expanded(
-          child: Center(
-            child:  Padding(
-              padding: EdgeInsets.all(AppConstants.sp30(context)),
-              child: Image.asset(
-                AssetData.logo,
+          child: Stack(
+            children: [
+              Transform.translate(
+                offset: Offset(0, -MediaQuery.of(context).size.height * .1),
+                child: Container(
+                  height: MediaQuery.of(context).size.height * .56,
+                  decoration: const BoxDecoration(
+                    image: DecorationImage(
+                        image: AssetImage(AssetData.authBack),
+                        fit: BoxFit.cover),
+                  ),
+                ),
               ),
-            )
+              Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  SizedBox(
+                      width: MediaQuery.of(context).size.height * .5,
+                      height: MediaQuery.of(context).size.height * .5,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Image.asset(AssetData.onBoarding),
+                        ],
+                      )),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * .04,
+                  ),
+                  Text(
+                    "Get on an intermittent fasting diet",
+                    style: Styles.onboardingTitleText(context),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * .08,
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(
+                        horizontal: AppConstants.width20(context)),
+                    child: DefaultButton(
+                      onPress: () {
+                        // if(CacheKeysManger.tokenStatus() != ""|| CacheKeysManger.tokenStatus() != null)
+                        //   {
+                        //     GoRouter.of(context).go("/mainLayoutView");
+                        //   }else
+                        //     {
+                              GoRouter.of(context).go("/introAuthView");
+                            // }
+
+                      },
+                      text: 'ابدأ',
+                      borderRadius: AppConstants.sp10(context),
+                      backgroundColor: Colors.white,
+                      textColor: AppColors.primaryColor,
+                    ),
+                  ),
+                  SizedBox(
+                    height: MediaQuery.of(context).size.height * .08,
+                  ),
+                ],
+              ),
+            ],
           ),
+        ),
+        SizedBox(
+          height: MediaQuery.of(context).size.height * .04,
         ),
       ],
     );

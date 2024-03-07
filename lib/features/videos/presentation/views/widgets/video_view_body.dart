@@ -2,7 +2,6 @@ import 'package:fetra/features/videos/presentation/views/video_details_view.dart
 import 'package:fetra/features/videos/presentation/views/widgets/video_item.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../core/shared_widgets/custom_tabs_item.dart';
 import '../../../../../core/utils/constants.dart';
 
 class VideoViewBody extends StatelessWidget {
@@ -13,7 +12,7 @@ class VideoViewBody extends StatelessWidget {
     return  Column(
       children: [
         SizedBox(height: AppConstants.height20(context),),
-        const CustomTabsItem(categories: ["Health","General","Football"],),
+        // const CustomTabsItem(categories: ["Health","General","Football"],),
         SizedBox(height: AppConstants.height20(context),),
 
         Expanded(

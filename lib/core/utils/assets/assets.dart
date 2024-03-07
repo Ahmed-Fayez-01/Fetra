@@ -9,7 +9,6 @@ class AssetData {
   static const search="assets/images/search.svg";
   static const notification="assets/images/notification.svg";
   static const onBoarding="assets/images/onboarding.png";
-  static const onBoarding2="assets/images/onboarding2.png";
   static const offer="assets/images/offer.png";
   static const authIcon="assets/images/auth_icon.png";
   static const introAuthIcon="assets/images/intro_auth_icon.png";
@@ -37,4 +36,5 @@ class AssetData {
   static const paperSalad="assets/images/paper_salad.png";
   static const greenSalad="assets/images/green_salad.png";
   static const giftCard="assets/images/gift_card.png";
+  static const dropDown="assets/images/drop_down.svg";
 }

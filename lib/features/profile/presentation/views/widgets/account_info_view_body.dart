@@ -1,6 +1,8 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:email_validator/email_validator.dart';
 import 'package:fetra/core/shared_widgets/custom_button.dart';
+import 'package:fetra/core/utils/services/local_services/cache_helper.dart';
+import 'package:fetra/core/utils/services/local_services/cache_keys.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -25,9 +27,9 @@ class _AccountInfoViewBodyState extends State<AccountInfoViewBody> {
 
   @override
   Widget build(BuildContext context) {
-    name.text="Ahmed Fayez";
-    email.text="ahmed.drengg@gmail.com";
-    password.text="Ahmed Fayez";
+    name.text=CacheHelper.getData(key: "name");
+    email.text=CacheHelper.getData(key: "email");
+    password.text=CacheHelper.getData(key: "name");
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: AppConstants.width20(context)),
       child: Column(

@@ -1,5 +1,4 @@
 import 'package:bloc/bloc.dart';
-import 'package:fetra/core/utils/constants.dart';
 
 import 'change_tabs_states.dart';
 

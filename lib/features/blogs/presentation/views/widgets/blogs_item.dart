@@ -1,13 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fetra/features/blogs/data/models/blog_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../../../core/utils/assets/assets.dart';
 import '../../../../../core/utils/constants.dart';
 
 class BlogItem extends StatelessWidget {
-  const BlogItem({super.key, this.onTap});
+  const BlogItem({super.key, this.onTap, required this.instance});
 final Function()? onTap;
+final Data instance;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -34,7 +37,7 @@ final Function()? onTap;
                     ),),
                   ),
                   SizedBox(width: AppConstants.width10(context),),
-                  Text("Ahmed Fayez",style: TextStyle(
+                  Text(instance.admin!,style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: MediaQuery.of(context).size.height*.016
                   ),)
@@ -43,7 +46,7 @@ final Function()? onTap;
               Row(
                 children: [
                   Expanded(
-                    child: Text("Is healthy eating beneficial? And why?",style: TextStyle(
+                    child: Text(instance.title!,style: TextStyle(
                         fontWeight: FontWeight.w600,
                         fontSize: MediaQuery.of(context).size.height*.02
                     ),),
@@ -52,10 +55,24 @@ final Function()? onTap;
                   ClipRRect(
                     borderRadius: BorderRadius.circular(AppConstants.sp10(context)),
                     child: CachedNetworkImage(
-                      width: MediaQuery.of(context).size.width*.3,
-                      height: MediaQuery.of(context).size.width*.3,
-                      imageUrl:"https://cdn.britannica.com/36/123536-050-95CB0C6E/Variety-fruits-vegetables.jpg",
+                      placeholder: (context, url) =>
+                          Shimmer.fromColors(
+                            baseColor: Colors.grey[400]!,
+                            highlightColor: Colors.grey[200]!,
+                            child:  Container(
+                              decoration: BoxDecoration(
+                                color: Colors.grey,
+                                borderRadius:
+                                BorderRadius.circular(20),
+                              ),
+                            ),
+                          ),
+                      errorWidget: (context, url, error) =>
+                      const Icon(Icons.error),
+                      imageUrl:instance.img!,
                       fit: BoxFit.fill,
+                      width: MediaQuery.of(context).size.width * 0.3,
+                      height: MediaQuery.of(context).size.width * 0.3,
                     ),
                   ),
                 ],
@@ -64,7 +81,7 @@ final Function()? onTap;
               Row(
                 children: [
                   Expanded(
-                    child: Text("18 hours ago",style: TextStyle(
+                    child: Text(instance.createdAt!,style: TextStyle(
                         fontWeight: FontWeight.w500,
                         color: const Color(0xff8B8C91),
                         fontSize: MediaQuery.of(context).size.height*.016
@@ -75,7 +92,7 @@ final Function()? onTap;
                 ],
               ),
               SizedBox(height: AppConstants.height10(context),),
-              Text("Is healthy eating beneficial? Why? Is healthy eating beneficial? Why? Is healthy eating beneficial? Why? Is healthy eating beneficial? And why?",
+              Text(instance.desc!,
                 maxLines: 3,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(

@@ -1,10 +1,11 @@
+import 'package:fetra/features/blogs/data/models/blog_model.dart';
 import 'package:fetra/features/blogs/presentation/views/widgets/blog_details_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class BlogDetailsView extends StatelessWidget {
-  const BlogDetailsView({super.key});
-
+  const BlogDetailsView({super.key, required this.instance});
+  final Data instance;
   @override
   Widget build(BuildContext context) {
     return   Scaffold(
@@ -20,7 +21,7 @@ class BlogDetailsView extends StatelessWidget {
           ),
         ),
       ),
-      body: const BlogDetailsViewBody(),
+      body:  BlogDetailsViewBody(instance: instance,),
     );
   }
 }

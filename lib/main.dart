@@ -2,8 +2,16 @@ import 'dart:async';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:fetra/features/auth/presentation/view_model/login_cubit/login_cubit.dart';
 import 'package:fetra/features/auth/presentation/view_model/register_cubit/register_cubit.dart';
+import 'package:fetra/features/blogs/data/repos/blog_repo_impl.dart';
 import 'package:fetra/features/blogs/presentation/view_models/change_tabs_cubit/change_tabs_cubit.dart';
+import 'package:fetra/features/blogs/presentation/view_models/get_all_categories_blog/get_all_categories_blog_cubit.dart';
+import 'package:fetra/features/blogs/presentation/view_models/get_blogs_by_id/get_blogs_by_id_cubit.dart';
+import 'package:fetra/features/profile/data/repos/profile_repo_impl.dart';
 import 'package:fetra/features/profile/presentation/view_models/change_subscription_cubit/change_subscription_cubit.dart';
+import 'package:fetra/features/profile/presentation/view_models/test_sleeping/test_sleeping_cubit.dart';
+import 'package:fetra/features/store/data/repos/store_repo_impl.dart';
+import 'package:fetra/features/store/presentation/view_models/get_product_details/get_product_details_cubit.dart';
+import 'package:fetra/features/store/presentation/view_models/get_store_by_id/get_store_by_id_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,6 +24,7 @@ import 'core/utils/theme/app_theme.dart';
 import 'features/auth/data/repos/auth_repo_impl.dart';
 import 'features/main_layout/view_model/change_nav_bar_status/change_nav_bar_status_cubit.dart';
 import 'features/store/presentation/view_models/change_tabs_image_cubit/change_tabs_image_cubit.dart';
+import 'features/store/presentation/view_models/get_all_categories_store/get_all_categories_store_cubit.dart';
 
 
 Future main() async {
@@ -50,6 +59,30 @@ class Fetra extends StatelessWidget {
         BlocProvider(
             create: (context) => LoginCubit(
               getIt.get<AuthRepoImpl>(),
+            )),
+        BlocProvider(
+            create: (context) => GetAllCategoriesBlogCubit(
+              getIt.get<BlogRepoImpl>(),
+            )),
+        BlocProvider(
+            create: (context) => GetBlogsByIdCubit(
+              getIt.get<BlogRepoImpl>(),
+            )),
+        BlocProvider(
+            create: (context) => TestSleepingCubit(
+              getIt.get<ProfileRepoImpl>(),
+            )),
+        BlocProvider(
+            create: (context) => GetAllCategoriesStoreCubit(
+              getIt.get<StoreRepoImpl>(),
+            )),
+        BlocProvider(
+            create: (context) => GetStoreByIdCubit(
+              getIt.get<StoreRepoImpl>(),
+            )),
+        BlocProvider(
+            create: (context) => GetProductDetailsCubit(
+              getIt.get<StoreRepoImpl>(),
             )),
         BlocProvider(
             create: (context) => RegisterCubit(

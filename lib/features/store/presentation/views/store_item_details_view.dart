@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class StoreItemDetails extends StatelessWidget {
-  const StoreItemDetails({super.key});
-
+  const StoreItemDetails({super.key, required this.id});
+final String id;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +22,7 @@ class StoreItemDetails extends StatelessWidget {
               Brightness.light, //<-- For iOS SEE HERE (dark icons)
             ),
           )),
-      body: const StoreItemDetailsViewBody(),
+      body: StoreItemDetailsViewBody(id: id,),
     );
   }
 }

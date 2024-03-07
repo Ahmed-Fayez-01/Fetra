@@ -12,8 +12,8 @@ import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
 import '../../../../core/shared_widgets/custom_button.dart';
 import '../../../../core/shared_widgets/default_text_form_field.dart';
+import '../../../../core/shared_widgets/toast.dart';
 import '../../../../core/utils/assets/assets.dart';
-import '../../../../core/utils/colors/colors.dart';
 import '../../../../core/utils/text_styles/styles.dart';
 import '../view_model/login_cubit/login_cubit.dart';
 
@@ -34,7 +34,7 @@ class _LoginViewState extends State<LoginView> {
     return double.tryParse(s) != null;
   }
 
-  TextEditingController emailOrPhone = TextEditingController();
+  TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
   late StreamSubscription<InternetConnectionStatus> subscription;
 
@@ -76,18 +76,17 @@ class _LoginViewState extends State<LoginView> {
           preferredSize: const Size.fromHeight(0.0), // here the desired height
           child: AppBar(
             elevation: 0,
-            systemOverlayStyle:  const SystemUiOverlayStyle(
+            systemOverlayStyle: const SystemUiOverlayStyle(
               statusBarColor: Color(0xff53B97C),
               // <-- SEE HERE
               statusBarIconBrightness: Brightness.light,
               //<-- For Android SEE HERE (dark icons)
-              systemNavigationBarColor:Colors.white,
+              systemNavigationBarColor: Colors.white,
               statusBarBrightness:
-              Brightness.dark, //<-- For iOS SEE HERE (dark icons)
+                  Brightness.dark, //<-- For iOS SEE HERE (dark icons)
             ),
           )),
       body: Stack(
-
         children: [
           Column(
             children: [
@@ -99,15 +98,15 @@ class _LoginViewState extends State<LoginView> {
                       Stack(
                         children: [
                           Transform.translate(
-                            offset: Offset(0,-MediaQuery.of(context).size.height * .1),
+                            offset: Offset(
+                                0, -MediaQuery.of(context).size.height * .1),
                             child: Container(
                               height: MediaQuery.of(context).size.height * .5,
                               decoration: const BoxDecoration(
-                                  image: DecorationImage(
+                                image: DecorationImage(
                                     image: AssetImage(AssetData.authBack),
-                                    fit: BoxFit.cover
-                                  ),
-                                 ),
+                                    fit: BoxFit.cover),
+                              ),
                             ),
                           ),
                           Transform.translate(
@@ -175,7 +174,8 @@ class _LoginViewState extends State<LoginView> {
                         ],
                       ),
                       Transform.translate(
-                        offset: Offset(0,-MediaQuery.of(context).size.height * .08),
+                        offset: Offset(
+                            0, -MediaQuery.of(context).size.height * .08),
                         child: Padding(
                           padding: EdgeInsets.symmetric(
                               horizontal: AppConstants.width20(context)),
@@ -202,17 +202,19 @@ class _LoginViewState extends State<LoginView> {
                                                   .016),
                                         ),
                                         SizedBox(
-                                          height:
-                                              MediaQuery.of(context).size.height *
-                                                  .008,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              .008,
                                         ),
                                         DefaultTextFormField(
                                           textInputType: TextInputType.text,
-                                          controller: emailOrPhone,
+                                          controller: email,
                                           maxLines: 1,
-                                          borderRadius:
-                                              MediaQuery.of(context).size.height *
-                                                  .01,
+                                          borderRadius: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              .01,
                                           borderSideWidth: 0,
                                           validation: (String? value) {
                                             if (value!.isEmpty) {
@@ -244,9 +246,10 @@ class _LoginViewState extends State<LoginView> {
                                                   .016),
                                         ),
                                         SizedBox(
-                                          height:
-                                              MediaQuery.of(context).size.height *
-                                                  .008,
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              .008,
                                         ),
                                         DefaultTextFormField(
                                           textInputType: TextInputType.text,
@@ -258,9 +261,10 @@ class _LoginViewState extends State<LoginView> {
                                               return "ValidationEmptyText".tr();
                                             }
                                           },
-                                          borderRadius:
-                                              MediaQuery.of(context).size.height *
-                                                  .01,
+                                          borderRadius: MediaQuery.of(context)
+                                                  .size
+                                                  .height *
+                                              .01,
                                           borderSideWidth: 0,
                                           contentPaddingHorizontal:
                                               AppConstants.width20(context),
@@ -289,7 +293,8 @@ class _LoginViewState extends State<LoginView> {
                                                             .014,
                                                     color:
                                                         const Color(0xff0EB177),
-                                                    fontWeight: FontWeight.w400),
+                                                    fontWeight:
+                                                        FontWeight.w400),
                                           ),
                                         ),
                                       ],
@@ -299,27 +304,51 @@ class _LoginViewState extends State<LoginView> {
                                     ),
                                     BlocConsumer<LoginCubit, LoginState>(
                                       builder: (BuildContext context, state) {
-                                        return DefaultButton(
-                                          height:
-                                              MediaQuery.of(context).size.height *
-                                                  .018,
-                                          onPress: () {
-                                            GoRouter.of(context).push("/mainLayoutView");
-                                          },
-                                          text: 'signin'.tr(),
-                                          fontFamily: "Cairo",
-                                          fontSize:
-                                              MediaQuery.of(context).size.height *
-                                                  .02,
-                                          borderRadius:
-                                              MediaQuery.of(context).size.height *
-                                                  .01,
-                                        );
+                                        return state is UserLoginLoadingState
+                                            ? const Center(
+                                                child:
+                                                    CircularProgressIndicator(),
+                                              )
+                                            : DefaultButton(
+                                                height: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    .018,
+                                                onPress: () {
+                                                  if (formKeyLogin.currentState!
+                                                      .validate()) {
+                                                    context
+                                                        .read<LoginCubit>()
+                                                        .loginUser(
+                                                            email: email.text,
+                                                            password:
+                                                                password.text,
+                                                            accountType:
+                                                                "email");
+                                                  }
+                                                },
+                                                text: 'signin'.tr(),
+                                                fontFamily: "Cairo",
+                                                fontSize: MediaQuery.of(context)
+                                                        .size
+                                                        .height *
+                                                    .02,
+                                                borderRadius:
+                                                    MediaQuery.of(context)
+                                                            .size
+                                                            .height *
+                                                        .01,
+                                              );
                                       },
                                       listener:
                                           (BuildContext context, state) async {
                                         if (state is UserLoginSuccessState) {
-                                        } else if (state is UserLoginErrorState) {
+                                          toast(text: state.model.message!, color: Colors.green);
+                                          GoRouter.of(context)
+                                              .push("/mainLayoutView");
+                                        } else if (state
+                                            is UserLoginErrorState) {
+                                          toast(text: state.errMessage!, color: Colors.red);
                                         } else if (state
                                             is UserLoginLoadingState) {}
                                       },
@@ -328,7 +357,8 @@ class _LoginViewState extends State<LoginView> {
                                       height: AppConstants.height15(context),
                                     ),
                                     Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         Text(
                                           "Don’t have an account? ",

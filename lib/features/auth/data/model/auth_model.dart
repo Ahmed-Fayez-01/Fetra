@@ -1,22 +1,43 @@
 class AuthModel {
-  bool? success;
-  String? message;
   Data? data;
+  dynamic? message;
+  bool? status;
 
-  AuthModel.fromJson(Map<String, dynamic> json) {
-    success = json['success'];
-    message = json['message'];
+  AuthModel.fromJson(Map<dynamic, dynamic> json) {
     data = json['data'] != null ?  Data.fromJson(json['data']) : null;
+    message = json['message'];
+    status = json['status'];
   }
 
 }
 
 class Data {
-  String? token;
+  User? user;
+  dynamic? token;
 
-  Data({this.token});
-
-  Data.fromJson(Map<String, dynamic> json) {
+  Data.fromJson(Map<dynamic, dynamic> json) {
+    user = json['user'] != null ?  User.fromJson(json['user']) : null;
     token = json['token'];
+  }
+
+}
+
+class User {
+  dynamic? id;
+  dynamic? name;
+  dynamic? email;
+  dynamic? phone;
+  dynamic? type;
+  dynamic? age;
+  dynamic? img;
+
+  User.fromJson(Map<dynamic, dynamic> json) {
+    id = json['id'];
+    name = json['name'];
+    email = json['email'];
+    phone = json['phone'];
+    type = json['type'];
+    age = json['age'];
+    img = json['img'];
   }
 }

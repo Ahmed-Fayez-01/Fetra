@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 import 'package:fetra/features/auth/presentation/views/register_view.dart';
 import '../../../features/auth/presentation/views/intro_auth.dart';
 import '../../../features/main_layout/presentation/views/main_layout_view.dart';
-import '../../../features/onboarding/presentaion/views/onboarding_screen.dart';
 import '../../../features/splash/presentation/views/splash_view.dart';
 
 abstract class AppRouter {
@@ -14,10 +13,6 @@ abstract class AppRouter {
       builder: (context, state) => const SplashView(),
     ),
     //Onboarding Roots
-    GoRoute(
-      path: "/onBoardingView",
-      builder: (context, state) => const OnBoardingView(),
-    ),
     GoRoute(
       path: "/introAuthView",
       builder: (context, state) => const IntroAuthView(),

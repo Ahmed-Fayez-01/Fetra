@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:fetra/features/store/data/models/store_categories.dart';
+import 'package:fetra/features/store/presentation/view_models/get_store_by_id/get_store_by_id_cubit.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../features/store/presentation/view_models/change_tabs_image_cubit/change_tabs_image_cubit.dart';
@@ -13,7 +13,7 @@ import '../utils/text_styles/styles.dart';
 class CustomTabsCategoriesWithImage extends StatelessWidget {
   const CustomTabsCategoriesWithImage({super.key, required this.categories});
 
-  final List<String> categories;
+  final StoreCategories categories;
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +33,7 @@ class CustomTabsCategoriesWithImage extends StatelessWidget {
                     return GestureDetector(
                       onTap: () {
                         context.read<ChangeTabsImageCubit>().changeTabs(index);
+                        context.read<GetStoreByIdCubit>().getStoreById(id: categories.data![index].id.toString());
                       },
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -70,7 +71,7 @@ class CustomTabsCategoriesWithImage extends StatelessWidget {
                             height: AppConstants.height5(context),
                           ),
                           Text(
-                            categories[index],
+                            categories.data![index].name!,
                             style: Styles.title12(context).copyWith(
                               color: context
                                           .read<ChangeTabsImageCubit>()
@@ -105,7 +106,7 @@ class CustomTabsCategoriesWithImage extends StatelessWidget {
                       ),
                     );
                   },
-                  itemCount: categories.length,
+                  itemCount: categories.data!.length,
                   separatorBuilder: (BuildContext context, int index) {
                     return SizedBox(
                       width: AppConstants.width20(context),
@@ -114,7 +115,7 @@ class CustomTabsCategoriesWithImage extends StatelessWidget {
                 ),
               ),
             ),
-            Divider(
+            const Divider(
               height: 0,
             ),
           ],

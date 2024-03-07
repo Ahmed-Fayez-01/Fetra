@@ -2,6 +2,8 @@ import 'package:fetra/features/splash/presentation/views/widgets/splash_view_bod
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import '../../../../core/utils/colors/colors.dart';
+
 class SplashView extends StatelessWidget {
   const SplashView({super.key});
 
@@ -9,16 +11,16 @@ class SplashView extends StatelessWidget {
   Widget build(BuildContext context) {
 //fayez
     return  Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: AppColors.primaryColor,
       appBar: PreferredSize(
           preferredSize: const Size.fromHeight(0.0), // here the desired height
           child: AppBar(
             elevation: 0,
-            systemOverlayStyle:  const SystemUiOverlayStyle(
-              statusBarColor: Colors.white, // <-- SEE HERE
-              statusBarIconBrightness: Brightness.dark, //<-- For Android SEE HERE (dark icons)
-              systemNavigationBarColor: Colors.white,
-              statusBarBrightness: Brightness.light, //<-- For iOS SEE HERE (dark icons)
+            systemOverlayStyle:  SystemUiOverlayStyle(
+              statusBarColor: const Color(0xff53B97C), // <-- SEE HERE
+              statusBarIconBrightness: Brightness.light, //<-- For Android SEE HERE (dark icons)
+              systemNavigationBarColor: AppColors.primaryColor,
+              statusBarBrightness: Brightness.dark, //<-- For iOS SEE HERE (dark icons)
             ),
           )
       ),

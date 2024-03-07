@@ -26,7 +26,7 @@ class SubscriptionViewBody extends StatelessWidget {
             ],
           ),
           SizedBox(height: AppConstants.height20(context),),
-          const CustomTabsItem(categories: ["Groups","Private","Calculator"]),
+          // const CustomTabsItem(categories: ["Groups","Private","Calculator"]),
           SizedBox(height: AppConstants.height20(context)*2,),
           BlocBuilder<ChangeSubscriptionCubit,ChangeSubscriptionStates>(
             builder: (context,state) {

@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fetra/features/store/data/models/store_model.dart';
 import 'package:fetra/features/store/presentation/views/store_item_details_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,13 +10,13 @@ import 'package:shimmer/shimmer.dart';
 
 
 class StoreItem extends StatelessWidget {
-  const StoreItem({super.key});
-
+  const StoreItem({super.key, required this.instance});
+  final Data instance;
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context)=>const StoreItemDetails()));
+        Navigator.push(context, MaterialPageRoute(builder: (context)=> StoreItemDetails(id:instance.id.toString(),)));
       },
       child: Container(
         decoration: BoxDecoration(
@@ -56,7 +57,7 @@ class StoreItem extends StatelessWidget {
                             ),
                         errorWidget: (context, url, error) =>
                         const Icon(Icons.error),
-                        imageUrl:"https://www.healthshots.com/wp-content/uploads/2023/04/carrots.jpg",
+                        imageUrl:instance.img!,
                         fit: BoxFit.fill,
                         width: double.infinity,
                         height:
@@ -80,7 +81,7 @@ class StoreItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: [
                         Text(
-                          "Carrot",
+                          instance.name!,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           textAlign: TextAlign.start,
@@ -102,7 +103,7 @@ class StoreItem extends StatelessWidget {
                           fontSize: MediaQuery.of(context).size.height*.015,
                           color: Color(0xff828282)
                         ),),
-                        Text("12,000",style: TextStyle(
+                        Text(instance.price!,style: TextStyle(
                             fontWeight: FontWeight.w500,
                             fontSize: MediaQuery.of(context).size.height*.015,
                             color: AppColors.primaryColor
