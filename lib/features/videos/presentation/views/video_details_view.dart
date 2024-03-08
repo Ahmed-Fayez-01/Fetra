@@ -6,8 +6,8 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../core/utils/assets/assets.dart';
 
 class VideoDetailsView extends StatelessWidget {
-  const VideoDetailsView({super.key});
-
+  const VideoDetailsView({super.key, required this.id});
+final String id;
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -27,7 +27,7 @@ class VideoDetailsView extends StatelessWidget {
         centerTitle: true,
         backgroundColor: const Color(0xff4CAD73),
       ),
-      body: const VideoDetailsViewBody(),
+      body: VideoDetailsViewBody(id: id,),
     );
   }
 }

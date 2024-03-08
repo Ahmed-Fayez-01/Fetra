@@ -6,12 +6,25 @@ import 'package:fetra/features/blogs/data/repos/blog_repo_impl.dart';
 import 'package:fetra/features/blogs/presentation/view_models/change_tabs_cubit/change_tabs_cubit.dart';
 import 'package:fetra/features/blogs/presentation/view_models/get_all_categories_blog/get_all_categories_blog_cubit.dart';
 import 'package:fetra/features/blogs/presentation/view_models/get_blogs_by_id/get_blogs_by_id_cubit.dart';
+import 'package:fetra/features/home/data/repos/Home_repo.dart';
+import 'package:fetra/features/home/data/repos/home_repo_impl.dart';
+import 'package:fetra/features/home/presentation/view_models/slider_cubit/get_slider_cubit.dart';
 import 'package:fetra/features/profile/data/repos/profile_repo_impl.dart';
 import 'package:fetra/features/profile/presentation/view_models/change_subscription_cubit/change_subscription_cubit.dart';
 import 'package:fetra/features/profile/presentation/view_models/test_sleeping/test_sleeping_cubit.dart';
 import 'package:fetra/features/store/data/repos/store_repo_impl.dart';
 import 'package:fetra/features/store/presentation/view_models/get_product_details/get_product_details_cubit.dart';
 import 'package:fetra/features/store/presentation/view_models/get_store_by_id/get_store_by_id_cubit.dart';
+import 'package:fetra/features/trainers/data/repos/trainer_repo_impl.dart';
+import 'package:fetra/features/trainers/presentation/view_models/change_trainer_tabs_cubit/change_trainer_tabs_cubit.dart';
+import 'package:fetra/features/trainers/presentation/view_models/get_all_trainers_blog/get_all_trainers_blog_cubit.dart';
+import 'package:fetra/features/trainers/presentation/view_models/get_trainer_details/get_product_details_cubit.dart';
+import 'package:fetra/features/trainers/presentation/view_models/subscribe_trainer/subscribe_trainer_cubit.dart';
+import 'package:fetra/features/videos/data/repos/video_repo_impl.dart';
+import 'package:fetra/features/videos/presentation/view_models/change_video_tabs_cubit/change_video_tabs_cubit.dart';
+import 'package:fetra/features/videos/presentation/view_models/get_all_categories_video/get_all_categories_video_cubit.dart';
+import 'package:fetra/features/videos/presentation/view_models/get_video_details/get_video_details_cubit.dart';
+import 'package:fetra/features/videos/presentation/view_models/get_videos_by_id/get_videos_by_id_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -56,6 +69,8 @@ class Fetra extends StatelessWidget {
         BlocProvider(create: (context) => ChangeTabsCubit()),
         BlocProvider(create: (context) => ChangeTabsImageCubit()),
         BlocProvider(create: (context) => ChangeSubscriptionCubit()),
+        BlocProvider(create: (context) => ChangeTrainerTabsCubit()),
+        BlocProvider(create: (context) => ChangeVideosTabsCubit()),
         BlocProvider(
             create: (context) => LoginCubit(
               getIt.get<AuthRepoImpl>(),
@@ -63,7 +78,7 @@ class Fetra extends StatelessWidget {
         BlocProvider(
             create: (context) => GetAllCategoriesBlogCubit(
               getIt.get<BlogRepoImpl>(),
-            )),
+            )..getAllCategoriesBlogs()),
         BlocProvider(
             create: (context) => GetBlogsByIdCubit(
               getIt.get<BlogRepoImpl>(),
@@ -75,7 +90,7 @@ class Fetra extends StatelessWidget {
         BlocProvider(
             create: (context) => GetAllCategoriesStoreCubit(
               getIt.get<StoreRepoImpl>(),
-            )),
+            )..getAllCategoriesStores()),
         BlocProvider(
             create: (context) => GetStoreByIdCubit(
               getIt.get<StoreRepoImpl>(),
@@ -83,6 +98,34 @@ class Fetra extends StatelessWidget {
         BlocProvider(
             create: (context) => GetProductDetailsCubit(
               getIt.get<StoreRepoImpl>(),
+            )),
+        BlocProvider(
+            create: (context) => GetAllCategoriesVideoCubit(
+              getIt.get<VideoRepoImpl>(),
+            )..getAllCategoriesVideos()),
+        BlocProvider(
+            create: (context) => GetVideosByIdCubit(
+              getIt.get<VideoRepoImpl>(),
+            )),
+        BlocProvider(
+            create: (context) => GetSliderCubit(
+              getIt.get<HomeRepoImpl>(),
+            )..getSlider()),
+        BlocProvider(
+            create: (context) => GetVideoDetailsCubit(
+              getIt.get<VideoRepoImpl>(),
+            )),
+        BlocProvider(
+            create: (context) => GetAllTrainersCubit(
+              getIt.get<TrainerRepoImpl>(),
+            )),
+        BlocProvider(
+            create: (context) => GetTrainerDetailsCubit(
+              getIt.get<TrainerRepoImpl>(),
+            )),
+        BlocProvider(
+            create: (context) => SubscribeTrainerCubit(
+              getIt.get<TrainerRepoImpl>(),
             )),
         BlocProvider(
             create: (context) => RegisterCubit(

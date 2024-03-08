@@ -1,3 +1,4 @@
+import 'package:fetra/features/store/data/models/store_model.dart';
 import 'package:fetra/features/store/presentation/view_models/change_tabs_image_cubit/change_tabs_image_cubit.dart';
 import 'package:fetra/features/store/presentation/view_models/change_tabs_image_cubit/change_tabs_image_states.dart';
 import 'package:fetra/features/store/presentation/view_models/get_all_categories_store/get_all_categories_store_cubit.dart';
@@ -26,8 +27,23 @@ class _StoreViewBodyState extends State<StoreViewBody> {
   var searchController = TextEditingController();
   @override
   void initState(){
-    context.read<GetAllCategoriesStoreCubit>().getAllCategoriesStores();
+    AppConstants.foundedProducts = AppConstants.storeModel;
     super.initState();
+  }
+  void runFilter(String enteredKeyword) {
+    List<Data> result = [];
+    if (enteredKeyword.isEmpty) {
+      result = AppConstants.storeModel;
+    } else {
+      result = AppConstants.storeModel
+          .where((product) => product.name!
+          .toLowerCase()
+          .contains(enteredKeyword.toLowerCase()))
+          .toList();
+    }
+    setState(() {
+      AppConstants.foundedProducts = result;
+    });
   }
   @override
   Widget build(BuildContext context) {
@@ -39,15 +55,12 @@ class _StoreViewBodyState extends State<StoreViewBody> {
               horizontal: AppConstants.width20(context)),
           child: Row(
             children: [
-              InkWell(onTap: (){
-                Navigator.pop(context);
-              },child: SvgPicture.asset(AssetData.arrowLeft,color: Colors.black,width: MediaQuery.of(context).size.height*.03,)),
-              SizedBox(width: AppConstants.width20(context),),
               Expanded(
                 child: DefaultTextFormField(
                   textInputType: TextInputType.name,
                   controller: searchController,
                   onChange: (value) {
+                    runFilter(value);
                   },
                   hasBorder: false,
                   contentPaddingVertical:
@@ -112,7 +125,7 @@ class _StoreViewBodyState extends State<StoreViewBody> {
         SizedBox(height: AppConstants.height20(context),),
         BlocBuilder<ChangeTabsImageCubit,ChangeTabsImageStates>(
             builder: (context,state) {
-              return BlocBuilder<GetStoreByIdCubit,GetStoreByIdState>(
+              return BlocConsumer<GetStoreByIdCubit,GetStoreByIdState>(
                   builder: (context,state) {
                     if(state is UserGetStoreByIdSuccessState)
                     {
@@ -123,7 +136,7 @@ class _StoreViewBodyState extends State<StoreViewBody> {
                                 AppConstants.height10(context),
                                 horizontal:
                                 AppConstants.width20(context)),
-                            itemCount: state.model.data!.length,
+                            itemCount: AppConstants.foundedProducts.length,
                             gridDelegate:
                             SliverGridDelegateWithFixedCrossAxisCount(
                                 crossAxisCount: 2,
@@ -133,9 +146,9 @@ class _StoreViewBodyState extends State<StoreViewBody> {
                                 mainAxisSpacing:
                                 AppConstants.height20(
                                     context),
-                                childAspectRatio: 0.66),
+                                childAspectRatio: 0.65),
                             itemBuilder: (context, index) {
-                              return  StoreItem(instance: state.model.data![index],);
+                              return  StoreItem(instance: AppConstants.foundedProducts[index],);
                             }),
                       );
                     }else{
@@ -172,7 +185,12 @@ class _StoreViewBodyState extends State<StoreViewBody> {
                         ),
                       );
                     }
-                  }
+                  }, listener: (BuildContext context, GetStoreByIdState state) {
+                    if(state is UserGetStoreByIdSuccessState)
+                      {
+                        runFilter(searchController.text);
+                      }
+              },
               );
             }
         )

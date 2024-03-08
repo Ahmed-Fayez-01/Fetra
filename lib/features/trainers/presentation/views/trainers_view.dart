@@ -8,6 +8,7 @@ class TrainersView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: PreferredSize(
           preferredSize: const Size.fromHeight(0.0), // here the desired height
           child: AppBar(

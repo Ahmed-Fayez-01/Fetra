@@ -37,4 +37,8 @@ class AssetData {
   static const greenSalad="assets/images/green_salad.png";
   static const giftCard="assets/images/gift_card.png";
   static const dropDown="assets/images/drop_down.svg";
+  static const meals="assets/images/meals.png";
+  static const link="assets/images/link.png";
+  static const congratulation="assets/images/congratulation.svg";
+
 }

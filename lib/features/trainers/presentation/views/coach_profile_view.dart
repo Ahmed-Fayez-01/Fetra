@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class CoachProfileView extends StatelessWidget {
-  const CoachProfileView({super.key});
-
+  const CoachProfileView({super.key, required this.id});
+final String id;
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -22,7 +22,7 @@ class CoachProfileView extends StatelessWidget {
               Brightness.light, //<-- For iOS SEE HERE (dark icons)
             ),
           )),
-      body: const CoachProfileViewBody(),
+      body: CoachProfileViewBody(id: id,),
     );
   }
 }

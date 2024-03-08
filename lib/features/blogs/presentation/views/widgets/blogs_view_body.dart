@@ -22,7 +22,6 @@ class _BlogsViewBodyState extends State<BlogsViewBody> {
   @override
   void initState()
   {
-    context.read<GetAllCategoriesBlogCubit>().getAllCategoriesBlogs();
     super.initState();
   }
   @override

@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fetra/core/utils/assets/assets.dart';
 import 'package:fetra/features/store/data/models/store_model.dart';
 import 'package:fetra/features/store/presentation/views/store_item_details_view.dart';
 import 'package:flutter/cupertino.dart';
@@ -113,7 +114,7 @@ class StoreItem extends StatelessWidget {
                     Text("14,000",style: TextStyle(
                         fontWeight: FontWeight.w500,
                         decoration: TextDecoration.lineThrough,
-                        decorationColor:Color(0xffBDBDBD) ,
+                        decorationColor:const Color(0xffBDBDBD) ,
                         fontSize: MediaQuery.of(context).size.height*.015,
                         color: const Color(0xffBDBDBD)
                     ),),
@@ -121,11 +122,12 @@ class StoreItem extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         Container(
+                          padding: EdgeInsets.all(AppConstants.width5(context)),
                           decoration: BoxDecoration(
                             border: Border.all(color: AppColors.primarySwatchColor),
                             borderRadius: BorderRadius.circular(AppConstants.sp10(context)),
                           ),
-                          child: Icon(Icons.add,color: AppColors.primaryColor,),
+                          child: Image.asset(AssetData.link),
                         )
                       ],
                     ),

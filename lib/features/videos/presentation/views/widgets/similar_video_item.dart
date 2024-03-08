@@ -1,12 +1,16 @@
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../../../core/utils/assets/assets.dart';
 import '../../../../../core/utils/constants.dart';
+import '../../../data/models/video_details_model.dart';
 
 class SimilarVideoItem extends StatelessWidget {
-  const SimilarVideoItem({super.key});
-
+  const SimilarVideoItem({super.key, required this.instance});
+final Videos instance;
   @override
   Widget build(BuildContext context) {
     return  Padding(
@@ -19,20 +23,41 @@ class SimilarVideoItem extends StatelessWidget {
           ),
           child:Row(
             children: [
-              Container(
-                padding: EdgeInsets.all(AppConstants.sp15(context)),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(AppConstants.sp10(context)),
-                ),
-                child: SvgPicture.asset(AssetData.play,width: MediaQuery.of(context).size.width*.12,),
+              Stack(
+                alignment: Alignment.center,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(AppConstants.sp10(context)),
+                    child: CachedNetworkImage(
+                      placeholder: (context, url) =>
+                          Shimmer.fromColors(
+                            baseColor: Colors.grey[400]!,
+                            highlightColor: Colors.grey[200]!,
+                            child:  Container(
+                              decoration: BoxDecoration(
+                                color: Colors.grey,
+                                borderRadius:
+                                BorderRadius.circular(20),
+                              ),
+                            ),
+                          ),
+                      errorWidget: (context, url, error) =>
+                      const Icon(Icons.error),
+                      imageUrl:instance.img!,
+                      fit: BoxFit.fill,
+                      width: MediaQuery.of(context).size.width*.2,
+                      height: MediaQuery.of(context).size.width*.2,
+                    ),
+                  ),
+                  SvgPicture.asset(AssetData.play,width: MediaQuery.of(context).size.width*.12,),
+                ],
               ),
               SizedBox(width: AppConstants.width10(context),),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Is healthy eating beneficial? And why?",
+                    Text(instance.name!,
                       maxLines: 2,
                       overflow:TextOverflow.ellipsis,
                       style: TextStyle(

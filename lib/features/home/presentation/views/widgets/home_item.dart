@@ -14,6 +14,7 @@ final Function()? onTap;
     return  InkWell(
       onTap: onTap,
       child: Container(
+        height: MediaQuery.of(context).size.height*.24,
         padding: EdgeInsets.symmetric(horizontal:AppConstants.width20(context),vertical: AppConstants.height30(context)),
         decoration: BoxDecoration(
             color: backColor,
@@ -22,7 +23,7 @@ final Function()? onTap;
         ),
         child: Column(
           children: [
-            Image.asset(icon),
+            Image.asset(icon,width: MediaQuery.of(context).size.width*.2,height: MediaQuery.of(context).size.width*.2,),
             SizedBox(height: AppConstants.height20(context),),
             Text(title,
               textAlign: TextAlign.center,

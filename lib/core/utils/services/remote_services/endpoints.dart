@@ -6,8 +6,15 @@ class EndPoints {
   static const getBlogsWithId = 'api/articals/';
   static const getStoreWithId = 'api/products/';
   static const getAllCategoryBlogs = 'api/category-articals';
+  static const getAllCategoryVideo = 'api/video-category';
+  static const getAllVideosById = 'api/videos';
+  static const getVideoDetails = 'api/video/';
   static const getAllCategoryStore = 'api/category-products';
   static const sleepingTest = 'api/sleeping-time';
   static const getProductDetails = 'api/product-details/';
+  static const getAllTrainers = 'api/get-trainer';
+  static const getTrainerDetails = 'api/get-trainer/';
+  static const subscribeTrainer = 'api/subscription';
+  static const getSlider = 'api/slider';
 
 }

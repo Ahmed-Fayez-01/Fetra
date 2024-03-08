@@ -2,6 +2,7 @@ import 'package:fetra/features/store/data/models/store_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../../../../core/utils/constants.dart';
 import '../../../data/repos/stroe_repo.dart';
 
 part 'get_store_by_id_state.dart';
@@ -16,6 +17,11 @@ class GetStoreByIdCubit extends Cubit<GetStoreByIdState> {
     return result.fold((failure) {
       emit(UserGetStoreByIdErrorState(failure.errMessage));
     }, (data) {
+      AppConstants.storeModel.clear();
+      for(var item in data.data!)
+      {
+        AppConstants.storeModel.add(item);
+      }
       emit(UserGetStoreByIdSuccessState(data));
     });
   }

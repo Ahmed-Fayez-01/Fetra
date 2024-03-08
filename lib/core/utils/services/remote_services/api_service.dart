@@ -66,7 +66,7 @@ class ApiService {
     required String endPoint,
     bool sendToken = false,
     dynamic data,
-    Map<String, dynamic>? query,
+    dynamic? query,
   }) async {
     _dio.options.headers = {
       "Content-Type": "application/json",

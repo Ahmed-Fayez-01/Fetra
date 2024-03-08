@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fetra/features/trainers/data/models/trainers_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -7,8 +8,8 @@ import '../../../../../core/utils/colors/colors.dart';
 import '../../../../../core/utils/constants.dart';
 
 class CoachItem extends StatelessWidget {
-  const CoachItem({super.key});
-
+  const CoachItem({super.key, required this.instance});
+  final Data instance;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -36,8 +37,7 @@ class CoachItem extends StatelessWidget {
                   MediaQuery.of(context).size.height * .08,
                 ),
                 child: CachedNetworkImage(
-                  imageUrl:
-                  "https://images.pexels.com/photos/1557652/pexels-photo-1557652.jpeg",
+                  imageUrl: instance.img!,
                   fit: BoxFit.cover,
                   height:
                   MediaQuery.of(context).size.height * .08,
@@ -55,7 +55,7 @@ class CoachItem extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Coach : Ahmed Fayez",style: TextStyle(
+                  Text("Coach : ${instance.name!}",style: TextStyle(
                       fontWeight: FontWeight.w600,
                       fontSize: MediaQuery.of(context).size.height*.014
                   ),),
@@ -64,7 +64,7 @@ class CoachItem extends StatelessWidget {
                     children: [
                       SvgPicture.asset(AssetData.phone,width: MediaQuery.of(context).size.width*.035,),
                       SizedBox(width: AppConstants.width5(context),),
-                      Text("01158368887",style: TextStyle(
+                      Text(instance.phone!,style: TextStyle(
                           fontWeight: FontWeight.w500,
                           fontSize: MediaQuery.of(context).size.height*.012,
                           color: const Color(0xff4F4F4F)
@@ -74,10 +74,10 @@ class CoachItem extends StatelessWidget {
                 ],
               ),
             ),
-            Text("Subscribe Now!",style: TextStyle(
+            Text(instance.subscrip! ?"Subscribed": "Subscribe Now!",style: TextStyle(
                 fontSize: MediaQuery.of(context).size.height*.012,
                 fontWeight: FontWeight.w500,
-                color: const Color(0xff888888)
+                color:instance.subscrip! ?AppColors.primaryColor: const Color(0xff888888)
             ),),
           ],
         ),

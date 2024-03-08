@@ -3,9 +3,9 @@ import 'package:fetra/core/utils/services/local_services/cache_keys.dart';
 import 'package:fetra/features/home/presentation/views/home_view.dart';
 import 'package:fetra/features/main_layout/presentation/views/widgets/bottom_nav_bar.dart';
 import 'package:fetra/features/main_layout/view_model/change_nav_bar_status/change_nav_bar_status_cubit.dart';
-import 'package:fetra/features/meals/presentation/views/meals_view.dart';
 import 'package:fetra/features/profile/presentation/views/profile_view.dart';
 import 'package:fetra/features/store/presentation/views/store_view.dart';
+import 'package:fetra/features/trainers/presentation/views/trainers_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,7 +18,7 @@ class MainLayoutView extends StatelessWidget {
   List<Widget> screens = [
     const HomeView(),
     const StoreView(),
-    const MealsView(),
+    const TrainersView(),
     const ProfileView(),
   ];
 
@@ -34,15 +34,15 @@ class MainLayoutView extends StatelessWidget {
       child: BlocBuilder<ChangeNavBarStatusCubit, ChangeNavBarStatusState>(builder: (context, state) {
         return Scaffold(
           resizeToAvoidBottomInset: false,
-          appBar: PreferredSize(
+            appBar: PreferredSize(
               preferredSize: const Size.fromHeight(0.0), // here the desired height
               child: AppBar(
                 elevation: 0,
                 systemOverlayStyle:   SystemUiOverlayStyle(
-                  statusBarColor: cubit.currentIndex==1 ||cubit.currentIndex==3 ?Colors.white: const Color(0xff4CAD73), // <-- SEE HERE
-                  statusBarIconBrightness:cubit.currentIndex==1||cubit.currentIndex==3?Brightness.dark :Brightness.light, //<-- For Android SEE HERE (dark icons)
+                  statusBarColor: cubit.currentIndex==0 ? const Color(0xff4CAD73):Colors.white, // <-- SEE HERE
+                  statusBarIconBrightness:cubit.currentIndex==0?Brightness.light:Brightness.dark, //<-- For Android SEE HERE (dark icons)
                   systemNavigationBarColor: Colors.white,
-                  statusBarBrightness:cubit.currentIndex==1||cubit.currentIndex==3?Brightness.light : Brightness.dark, //<-- For iOS SEE HERE (dark icons)
+                  statusBarBrightness:cubit.currentIndex==0? Brightness.dark:Brightness.light, //<-- For iOS SEE HERE (dark icons)
                 ),
               )
           ),

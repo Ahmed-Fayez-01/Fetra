@@ -3,7 +3,6 @@ class StoreCategories {
   String? message;
   bool? status;
 
-
   StoreCategories.fromJson(Map<String, dynamic> json) {
     if (json['data'] != null) {
       data = <Data>[];
@@ -20,10 +19,12 @@ class StoreCategories {
 class Data {
   int? id;
   String? name;
+  String? img;
+
 
   Data.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
+    img = json['img'];
   }
-
 }

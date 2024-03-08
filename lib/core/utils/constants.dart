@@ -1,4 +1,6 @@
 
+import 'package:fetra/features/store/data/models/store_model.dart' as storeData;
+import 'package:fetra/features/trainers/data/models/trainers_model.dart' as trainerData;
 import 'package:flutter/material.dart';
 
 
@@ -7,7 +9,10 @@ import 'package:flutter/material.dart';
 class AppConstants {
   static bool? hasInternet;
   static bool hideMeasure=false;
-
+  static List<trainerData.Data> model=[];
+  static List<trainerData.Data> foundedTrainers=[];
+  static List<storeData.Data> storeModel=[];
+  static List<storeData.Data> foundedProducts=[];
   static sp10(context){
     var height=MediaQuery.of(context).size.height*.012;
     return height;

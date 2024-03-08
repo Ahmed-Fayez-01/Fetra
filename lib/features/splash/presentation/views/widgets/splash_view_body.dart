@@ -62,14 +62,13 @@ class _SplashViewBodyState extends State<SplashViewBody> {
                         horizontal: AppConstants.width20(context)),
                     child: DefaultButton(
                       onPress: () {
-                        // if(CacheKeysManger.tokenStatus() != ""|| CacheKeysManger.tokenStatus() != null)
-                        //   {
-                        //     GoRouter.of(context).go("/mainLayoutView");
-                        //   }else
-                        //     {
+                        if(CacheKeysManger.tokenStatus() != ""|| CacheKeysManger.tokenStatus() != null)
+                          {
+                            GoRouter.of(context).go("/mainLayoutView");
+                          }else
+                            {
                               GoRouter.of(context).go("/introAuthView");
-                            // }
-
+                            }
                       },
                       text: 'ابدأ',
                       borderRadius: AppConstants.sp10(context),
