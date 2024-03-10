@@ -6,8 +6,8 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../core/utils/assets/assets.dart';
 
 class FatCalculatorView extends StatelessWidget {
-  const FatCalculatorView({super.key});
-
+  const FatCalculatorView({super.key, required this.paid});
+  final bool paid;
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -27,7 +27,7 @@ class FatCalculatorView extends StatelessWidget {
         centerTitle: true,
         backgroundColor: const Color(0xff4CAD73),
       ),
-      body: const FatCalculatorViewBody(),
+      body: FatCalculatorViewBody(paid: paid,),
     );
   }
 }

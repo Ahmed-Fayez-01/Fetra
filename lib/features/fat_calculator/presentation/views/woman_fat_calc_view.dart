@@ -6,11 +6,12 @@ import 'package:flutter_svg/svg.dart';
 import '../../../../core/utils/assets/assets.dart';
 
 class WomanFatCalcView extends StatelessWidget {
-  const WomanFatCalcView({super.key});
-
+  const WomanFatCalcView({super.key, required this.paid});
+final bool paid;
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         systemOverlayStyle:  const SystemUiOverlayStyle(
           statusBarColor: Color(0xff4CAD73), // <-- SEE HERE
@@ -27,7 +28,7 @@ class WomanFatCalcView extends StatelessWidget {
         centerTitle: true,
         backgroundColor: const Color(0xff4CAD73),
       ),
-      body: const WomanFatCalcViewBody(),
+      body: WomanFatCalcViewBody(paid: paid,),
     );
   }
 }

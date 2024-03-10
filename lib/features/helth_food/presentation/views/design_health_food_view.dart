@@ -1,17 +1,16 @@
-import 'package:fetra/features/fat_calculator/presentation/views/widgets/man_fat_calc_view_body.dart';
+import 'package:fetra/features/helth_food/presentation/views/widgets/design_health_food_view_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 
 import '../../../../core/utils/assets/assets.dart';
 
-class ManFatCalcView extends StatelessWidget {
-  const ManFatCalcView({super.key, required this.paid});
-  final bool paid;
+class DesignHealthFoodView extends StatelessWidget {
+  const DesignHealthFoodView({super.key, required this.numberOfMeals});
+final String numberOfMeals;
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      resizeToAvoidBottomInset: false,
+    return Scaffold(
       appBar: AppBar(
         systemOverlayStyle:  const SystemUiOverlayStyle(
           statusBarColor: Color(0xff4CAD73), // <-- SEE HERE
@@ -19,7 +18,7 @@ class ManFatCalcView extends StatelessWidget {
           systemNavigationBarColor: Colors.white,
           statusBarBrightness: Brightness.dark, //<-- For iOS SEE HERE (dark icons)
         ),
-        title: const Text("Fat Calculation",style: TextStyle(
+        title: const Text("Design Your Meals",style: TextStyle(
             color: Colors.white
         ),),
         leading: InkWell(onTap: (){
@@ -28,7 +27,7 @@ class ManFatCalcView extends StatelessWidget {
         centerTitle: true,
         backgroundColor: const Color(0xff4CAD73),
       ),
-      body: ManFatCalcViewBody(paid: paid,),
+      body: DesignHealthFoodViewBody(numberOfMeals: numberOfMeals,),
     );
   }
 }

@@ -16,5 +16,8 @@ class EndPoints {
   static const getTrainerDetails = 'api/get-trainer/';
   static const subscribeTrainer = 'api/subscription';
   static const getSlider = 'api/slider';
+  static const rateMale = 'api/rate-male';
+  static const rateFemale = 'api/rate-female';
+  static const getFood = 'api/get-food';
 
 }

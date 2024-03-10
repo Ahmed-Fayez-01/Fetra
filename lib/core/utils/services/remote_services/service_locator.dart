@@ -1,4 +1,7 @@
 import 'package:dio/dio.dart';
+import 'package:fetra/features/fat_calculator/data/repos/fat_repo_impl.dart';
+import 'package:fetra/features/helth_food/data/repos/health_food_repo.dart';
+import 'package:fetra/features/helth_food/data/repos/health_food_repo_impl.dart';
 import 'package:fetra/features/home/data/repos/home_repo_impl.dart';
 import 'package:fetra/features/profile/data/repos/profile_repo_impl.dart';
 import 'package:fetra/features/store/data/repos/store_repo_impl.dart';
@@ -33,6 +36,12 @@ void setup() {
     getIt.get<ApiService>(),
   ));
   getIt.registerSingleton<HomeRepoImpl>(HomeRepoImpl(
+    getIt.get<ApiService>(),
+  ));
+  getIt.registerSingleton<FatRepoImpl>(FatRepoImpl(
+    getIt.get<ApiService>(),
+  ));
+  getIt.registerSingleton<HealthFoodRepoImpl>(HealthFoodRepoImpl(
     getIt.get<ApiService>(),
   ));
 }

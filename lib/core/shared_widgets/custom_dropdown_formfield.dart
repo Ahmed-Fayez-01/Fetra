@@ -20,6 +20,8 @@ class CustomDropDownButton extends StatelessWidget {
   this.hasBorder=true,
     this.borderRadius = 10,
   this.borderSideColor,
+  this.iconDropColor,
+  this.fillColor,
   this.borderSideEnabledColor,
     this.borderSideWidth = 1.0,  this.enabledBorderRadiusColor = Colors.grey,
     this.prefixIcon,
@@ -35,6 +37,8 @@ class CustomDropDownButton extends StatelessWidget {
   final double borderSideWidth;
   final Color enabledBorderRadiusColor;
   final Color? borderSideColor;
+  final Color? fillColor;
+  final Color? iconDropColor;
   final Color? borderSideEnabledColor;
   final bool hasBorder;
   final Widget? prefixIcon;
@@ -47,7 +51,7 @@ class CustomDropDownButton extends StatelessWidget {
       decoration: InputDecoration(
         prefixIcon: prefixIcon,
         isDense: true,
-        fillColor: const Color(0xffF2F2F2),
+        fillColor: fillColor??const Color(0xffF2F2F2),
         filled: true,
         contentPadding: EdgeInsets.zero,
         border: OutlineInputBorder(
@@ -109,7 +113,7 @@ class CustomDropDownButton extends StatelessWidget {
               ))
           .toList(),
       validator: validator,
-      icon: SvgPicture.asset(AssetData.dropDown),
+      icon: SvgPicture.asset(AssetData.dropDown,color: iconDropColor,),
       buttonPadding: EdgeInsets.only(right: AppConstants.width10(context)),
       onChanged: onChanged,
     );

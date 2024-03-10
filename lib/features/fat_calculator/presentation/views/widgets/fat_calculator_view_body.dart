@@ -7,8 +7,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class FatCalculatorViewBody extends StatelessWidget {
-  const FatCalculatorViewBody({super.key});
-
+  const FatCalculatorViewBody({super.key, required this.paid});
+  final bool paid;
   @override
   Widget build(BuildContext context) {
     return  Column(
@@ -21,11 +21,11 @@ class FatCalculatorViewBody extends StatelessWidget {
           child: Row(
             children: [
               Expanded(child: DefaultButton(onPress: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>const ManFatCalcView()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> ManFatCalcView(paid: paid,)));
               }, text: "Man",borderRadius: AppConstants.sp10(context),)),
               SizedBox(width: AppConstants.width50(context),),
               Expanded(child: DefaultButton(onPress: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>const WomanFatCalcView()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=> WomanFatCalcView(paid: paid,)));
               }, text: "Woman",borderRadius: AppConstants.sp10(context),)),
             ],
           ),

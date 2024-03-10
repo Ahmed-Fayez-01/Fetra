@@ -6,6 +6,9 @@ import 'package:fetra/features/blogs/data/repos/blog_repo_impl.dart';
 import 'package:fetra/features/blogs/presentation/view_models/change_tabs_cubit/change_tabs_cubit.dart';
 import 'package:fetra/features/blogs/presentation/view_models/get_all_categories_blog/get_all_categories_blog_cubit.dart';
 import 'package:fetra/features/blogs/presentation/view_models/get_blogs_by_id/get_blogs_by_id_cubit.dart';
+import 'package:fetra/features/fat_calculator/presentation/view_models/calculate_female_fats/calculate_female_fats_cubit.dart';
+import 'package:fetra/features/helth_food/presentation/view_models/change_meal/change_meal_cubit.dart';
+import 'package:fetra/features/helth_food/presentation/view_models/get_food/get_food_cubit.dart';
 import 'package:fetra/features/home/data/repos/Home_repo.dart';
 import 'package:fetra/features/home/data/repos/home_repo_impl.dart';
 import 'package:fetra/features/home/presentation/view_models/slider_cubit/get_slider_cubit.dart';
@@ -35,6 +38,9 @@ import 'core/utils/services/remote_services/service_locator.dart';
 import 'core/utils/theme/app_theme.dart';
 
 import 'features/auth/data/repos/auth_repo_impl.dart';
+import 'features/fat_calculator/data/repos/fat_repo_impl.dart';
+import 'features/fat_calculator/presentation/view_models/calculate_male_fats/calculate_male_fats_cubit.dart';
+import 'features/helth_food/data/repos/health_food_repo_impl.dart';
 import 'features/main_layout/view_model/change_nav_bar_status/change_nav_bar_status_cubit.dart';
 import 'features/store/presentation/view_models/change_tabs_image_cubit/change_tabs_image_cubit.dart';
 import 'features/store/presentation/view_models/get_all_categories_store/get_all_categories_store_cubit.dart';
@@ -71,6 +77,7 @@ class Fetra extends StatelessWidget {
         BlocProvider(create: (context) => ChangeSubscriptionCubit()),
         BlocProvider(create: (context) => ChangeTrainerTabsCubit()),
         BlocProvider(create: (context) => ChangeVideosTabsCubit()),
+        BlocProvider(create: (context) => ChangeMealStatusCubit()),
         BlocProvider(
             create: (context) => LoginCubit(
               getIt.get<AuthRepoImpl>(),
@@ -116,8 +123,20 @@ class Fetra extends StatelessWidget {
               getIt.get<VideoRepoImpl>(),
             )),
         BlocProvider(
+            create: (context) => CalculateFemaleFatsCubit(
+              getIt.get<FatRepoImpl>(),
+            )),
+        BlocProvider(
+            create: (context) => CalculateMaleFatsCubit(
+              getIt.get<FatRepoImpl>(),
+            )),
+        BlocProvider(
             create: (context) => GetAllTrainersCubit(
               getIt.get<TrainerRepoImpl>(),
+            )),
+        BlocProvider(
+            create: (context) => GetFoodCubit(
+              getIt.get<HealthFoodRepoImpl>(),
             )),
         BlocProvider(
             create: (context) => GetTrainerDetailsCubit(

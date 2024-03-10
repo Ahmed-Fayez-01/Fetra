@@ -156,7 +156,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                                imageUrl:
                                "https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/No-Image-Placeholder.svg/1665px-No-Image-Placeholder.svg.png",
                                fit: BoxFit.fill,
-                               height: MediaQuery.of(context).size.height*.25,
+                               height: MediaQuery.of(context).size.height*.22,
                                width: MediaQuery.of(context).size.width,
                              ),
                            ),
@@ -195,7 +195,7 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                 child:  Row(
                   children: [
                     Expanded(child: HomeItem(backColor: const Color(0x1AF8A44C), borderColor:  const Color(0xB2F8A44C), title: 'Fat calculation', icon: AssetData.calc, onTap: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (context)=>const FatCalculatorView()));
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> const FatCalculatorView(paid: false,)));
                     },)),
                     SizedBox(width: AppConstants.width20(context),),
                     Expanded(child: HomeItem(backColor: const Color(0x1A53B175), borderColor:  const Color(0xB253B175), title: 'Blogs', icon: AssetData.papers, onTap: () {
@@ -224,7 +224,9 @@ class _HomeViewBodyState extends State<HomeViewBody> {
                 padding: EdgeInsets.symmetric(horizontal: AppConstants.width30(context)),
                 child:  Row(
                   children: [
-                    Expanded(child: HomeItem(backColor: const Color(0xffE6F0F5), borderColor:  const Color(0xffB7DFF5), title: 'Paid Fat calculation', icon: AssetData.calc2, onTap: () {  },)),
+                    Expanded(child: HomeItem(backColor: const Color(0xffE6F0F5), borderColor:  const Color(0xffB7DFF5), title: 'Paid Fat calculation', icon: AssetData.calc2, onTap: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=> const FatCalculatorView(paid: true,)));
+                    },)),
                     SizedBox(width: AppConstants.width20(context),),
                     Expanded(child: HomeItem(backColor: const Color(0x1AF8A44C), borderColor:  const Color(0xB2F8A44C), title: 'Recipes', icon: AssetData.meals, onTap: () {
                       Navigator.push(context, MaterialPageRoute(builder: (context)=>const MealsView()));
