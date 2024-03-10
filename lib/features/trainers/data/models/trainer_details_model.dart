@@ -1,3 +1,4 @@
+
 class TrainerDetailsModel {
   List<Data>? data;
   String? message;
@@ -23,10 +24,10 @@ class Data {
   String? phone;
   String? type;
   int? age;
-  Null? bio;
+  String? bio;
   String? img;
   bool? subscrip;
-  List<String>? works;
+  List<Works>? works;
 
 
   Data.fromJson(Map<String, dynamic> json) {
@@ -39,7 +40,19 @@ class Data {
     bio = json['bio'];
     img = json['img'];
     subscrip = json['Subscrip'];
-    works = json['works'].cast<String>();
+    if (json['works'] != null) {
+      works = <Works>[];
+      json['works'].forEach((v) {
+        works!.add(Works.fromJson(v));
+      });
+    }
   }
+}
 
+class Works {
+  String? img;
+
+  Works.fromJson(Map<String, dynamic> json) {
+    img = json['img'];
+  }
 }

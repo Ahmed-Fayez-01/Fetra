@@ -17,11 +17,14 @@ class TrainerRepoImpl implements TrainerRepo {
 
 
   @override
-  Future<Either<Failure, TrainersModel>> getAllTrainers() async{
+  Future<Either<Failure, TrainersModel>> getAllTrainers({required String subscrip}) async{
     try {
       var response = await apiService!.get(
         endPoint:  EndPoints.getAllTrainers,
-        sendToken: true
+        sendToken: true,
+        query: {
+          "subscrip":subscrip
+        }
       );
       var result = TrainersModel.fromJson(response.data);
       return right(result);

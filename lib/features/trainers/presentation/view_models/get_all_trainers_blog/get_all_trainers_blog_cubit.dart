@@ -12,9 +12,9 @@ class GetAllTrainersCubit extends Cubit<GetAllTrainersState> {
   GetAllTrainersCubit(this.trainerRepo) : super(GetAllTrainersInitial());
   static GetAllTrainersCubit get(context) => BlocProvider.of(context);
   TrainerRepo? trainerRepo;
-  Future<void> getAllTrainers() async {
+  Future<void> getAllTrainers({required String subscrip}) async {
     emit(UserGetAllTrainersLoadingState());
-    var result = await trainerRepo!.getAllTrainers();
+    var result = await trainerRepo!.getAllTrainers(subscrip: subscrip);
     return result.fold((failure) {
       emit(UserGetAllTrainersErrorState(failure.errMessage));
     }, (data) {

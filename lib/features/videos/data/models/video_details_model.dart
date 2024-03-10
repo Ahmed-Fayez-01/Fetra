@@ -20,7 +20,7 @@ class Data {
   int? id;
   String? name;
   String? desc;
-  Null? video;
+  String? video;
   String? link;
   String? img;
   Category? category;
@@ -43,7 +43,7 @@ class Videos {
   int? id;
   String? name;
   String? desc;
-  Null? video;
+  String? video;
   String? link;
   String? img;
   Category? category;

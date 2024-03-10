@@ -55,6 +55,8 @@ dependencies:
   carousel_slider: ^4.2.1
   dots_indicator: ^3.0.0
   percent_indicator: ^4.2.3
+  video_player: ^2.8.1
+  chewie: ^1.7.1
   intl:
 
 dev_dependencies:

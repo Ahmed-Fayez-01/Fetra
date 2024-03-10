@@ -1,15 +1,16 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fetra/features/videos/presentation/view_models/get_video_details/get_video_details_cubit.dart';
 import 'package:fetra/features/videos/presentation/views/widgets/similar_video_item.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:shimmer/shimmer.dart';
+import 'package:video_player/video_player.dart';
 
 import '../../../../../core/utils/assets/assets.dart';
 import '../../../../../core/utils/colors/colors.dart';
 import '../../../../../core/utils/constants.dart';
+import 'chewi_list_item.dart';
 
 class VideoDetailsViewBody extends StatefulWidget {
   const VideoDetailsViewBody({super.key, required this.id});
@@ -38,50 +39,61 @@ class _VideoDetailsViewBodyState extends State<VideoDetailsViewBody> {
             SizedBox(
               height: AppConstants.height30(context),
             ),
-            Stack(
-              alignment: Alignment.center,
-              children: [
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                      horizontal: AppConstants.width20(context)),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ClipRRect(
-                        borderRadius: BorderRadius.circular(AppConstants.sp10(context)),
-                        child: CachedNetworkImage(
-                          placeholder: (context, url) => Shimmer.fromColors(
-                            baseColor: Colors.grey[400]!,
-                            highlightColor: Colors.grey[200]!,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.grey,
-                                borderRadius: BorderRadius.circular(20),
-                              ),
-                            ),
-                          ),
-                          errorWidget: (context, url, error) =>
-                              const Icon(Icons.error),
-                          imageUrl: state.model.data!.img!,
-                          fit: BoxFit.fill,
-                          width: MediaQuery.of(context).size.width -
-                              AppConstants.width20(context) * 2,
-                          height: MediaQuery.of(context).size.height * .2,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                CircleAvatar(
-                  radius: MediaQuery.of(context).size.height * .03,
-                  backgroundColor: const Color(0xff84C245),
-                  child: SvgPicture.asset(
-                    AssetData.arrowRight,
-                    width: MediaQuery.of(context).size.height * .01,
-                  ),
-                )
-              ],
-            ),
+            SizedBox(
+                height: MediaQuery.of(context).size.height*.2,
+                child: ChewieListItem(
+                    videoPlayerController: VideoPlayerController.networkUrl(
+                      Uri.parse(state.model.data!.video!),),
+                    looping: false)),
+            // Stack(
+            //   alignment: Alignment.center,
+            //   children: [
+            //     Padding(
+            //       padding: EdgeInsets.symmetric(
+            //           horizontal: AppConstants.width20(context)),
+            //       child: Row(
+            //         mainAxisAlignment: MainAxisAlignment.center,
+            //         children: [
+            //           ClipRRect(
+            //             borderRadius: BorderRadius.circular(AppConstants.sp10(context)),
+            //             child: CachedNetworkImage(
+            //               placeholder: (context, url) => Shimmer.fromColors(
+            //                 baseColor: Colors.grey[400]!,
+            //                 highlightColor: Colors.grey[200]!,
+            //                 child: Container(
+            //                   decoration: BoxDecoration(
+            //                     color: Colors.grey,
+            //                     borderRadius: BorderRadius.circular(20),
+            //                   ),
+            //                 ),
+            //               ),
+            //               errorWidget: (context, url, error) =>
+            //                   const Icon(Icons.error),
+            //               imageUrl: state.model.data!.img!,
+            //               fit: BoxFit.fill,
+            //               width: MediaQuery.of(context).size.width -
+            //                   AppConstants.width20(context) * 2,
+            //               height: MediaQuery.of(context).size.height * .2,
+            //             ),
+            //           ),
+            //         ],
+            //       ),
+            //     ),
+            //     InkWell(
+            //       onTap: (){
+            //
+            //       },
+            //       child: CircleAvatar(
+            //         radius: MediaQuery.of(context).size.height * .03,
+            //         backgroundColor: const Color(0xff84C245),
+            //         child: SvgPicture.asset(
+            //           AssetData.arrowRight,
+            //           width: MediaQuery.of(context).size.height * .01,
+            //         ),
+            //       ),
+            //     )
+            //   ],
+            // ),
             SizedBox(
               height: AppConstants.height30(context),
             ),

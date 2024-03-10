@@ -4,7 +4,6 @@ import 'package:fetra/core/utils/assets/assets.dart';
 import 'package:fetra/features/trainers/presentation/view_models/get_all_trainers_blog/get_all_trainers_blog_cubit.dart';
 import 'package:fetra/features/trainers/presentation/view_models/get_trainer_details/get_product_details_cubit.dart';
 import 'package:fetra/features/trainers/presentation/view_models/subscribe_trainer/subscribe_trainer_cubit.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -216,16 +215,30 @@ class _CoachProfileViewBodyState extends State<CoachProfileViewBody> {
                         crossAxisCount: state.model.data![0].works!.length,
                         crossAxisSpacing: AppConstants.width10(context),
                         mainAxisSpacing: AppConstants.height10(context),
-                        children: List.generate(6, (index) {
+                        children: List.generate(state.model.data![0].works!.length, (index) {
                           return Center(
                             child: ClipRRect(
                               borderRadius: BorderRadius.circular(
                                   AppConstants.sp10(context)),
                               child: CachedNetworkImage(
-                                width: MediaQuery.of(context).size.width * .3,
-                                height: MediaQuery.of(context).size.width * .3,
-                                imageUrl: state.model.data![0].works![index],
+                                placeholder: (context, url) =>
+                                    Shimmer.fromColors(
+                                      baseColor: Colors.grey[400]!,
+                                      highlightColor: Colors.grey[200]!,
+                                      child:  Container(
+                                        decoration: BoxDecoration(
+                                          color: Colors.grey,
+                                          borderRadius:
+                                          BorderRadius.circular(20),
+                                        ),
+                                      ),
+                                    ),
+                                errorWidget: (context, url, error) =>
+                                const Icon(Icons.error),
+                                imageUrl:state.model.data![0].works![index].img!,
                                 fit: BoxFit.fill,
+                                width: MediaQuery.of(context).size.width * 0.3,
+                                height: MediaQuery.of(context).size.width * 0.3,
                               ),
                             ),
                           );
@@ -262,7 +275,8 @@ class _CoachProfileViewBodyState extends State<CoachProfileViewBody> {
                         context
                             .read<GetTrainerDetailsCubit>()
                             .getTrainerDetails(id: widget.id);
-                        context.read<GetAllTrainersCubit>().getAllTrainers();
+                        context.read<GetAllTrainersCubit>().getAllTrainers(subscrip: '');
+                        context.read<GetAllTrainersCubit>().getAllTrainers(subscrip: 'true');
                       } else if (state is UserSubscribeTrainerErrorState) {}
                     },
                   ),

@@ -1,5 +1,6 @@
 import 'package:fetra/features/trainers/presentation/view_models/change_trainer_tabs_cubit/change_trainer_tabs_cubit.dart';
 import 'package:fetra/features/trainers/presentation/view_models/change_trainer_tabs_cubit/change_trainer_tabs_states.dart';
+import 'package:fetra/features/trainers/presentation/view_models/get_all_trainers_blog/get_all_trainers_blog_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -27,6 +28,7 @@ class CustomTabsTrainer extends StatelessWidget {
                     child: GestureDetector(
                       onTap: () {
                         context.read<ChangeTrainerTabsCubit>().changeTabs(0);
+                        context.read<GetAllTrainersCubit>().getAllTrainers(subscrip: "true");
                       },
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -64,6 +66,7 @@ class CustomTabsTrainer extends StatelessWidget {
                     child: GestureDetector(
                       onTap: () {
                         context.read<ChangeTrainerTabsCubit>().changeTabs(1);
+                        context.read<GetAllTrainersCubit>().getAllTrainers(subscrip: "");
                       },
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
