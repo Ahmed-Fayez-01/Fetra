@@ -1,13 +1,13 @@
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fetra/features/videos/presentation/view_models/get_video_details/get_video_details_cubit.dart';
 import 'package:fetra/features/videos/presentation/views/widgets/similar_video_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:shimmer/shimmer.dart';
 import 'package:video_player/video_player.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
-import '../../../../../core/utils/assets/assets.dart';
 import '../../../../../core/utils/colors/colors.dart';
 import '../../../../../core/utils/constants.dart';
 import 'chewi_list_item.dart';
@@ -28,6 +28,7 @@ class _VideoDetailsViewBodyState extends State<VideoDetailsViewBody> {
     super.initState();
   }
 
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<GetVideoDetailsCubit, GetVideoDetailsState>(
@@ -39,6 +40,29 @@ class _VideoDetailsViewBodyState extends State<VideoDetailsViewBody> {
             SizedBox(
               height: AppConstants.height30(context),
             ),
+            state.model.data!.video==""? SizedBox(
+                height: MediaQuery.of(context).size.height*.2,
+                child: Padding(
+                  padding: EdgeInsets.symmetric(horizontal: AppConstants.width20(context)),
+                  child:  ClipRRect(
+                    borderRadius: BorderRadius.circular(AppConstants.sp10(context)),
+                    child: YoutubePlayer(
+                      controller: YoutubePlayerController(
+                        initialVideoId: YoutubePlayer.convertUrlToId(state.model.data!.link!)!,
+                        flags: const YoutubePlayerFlags(
+                          autoPlay: true,
+                          mute: false,
+                        ),
+                      ),
+                      showVideoProgressIndicator: true,
+                      progressIndicatorColor: AppColors.primaryColor,
+                      progressColors: const ProgressBarColors(
+                        playedColor: AppColors.primarySwatchColor,
+                        handleColor: AppColors.primarySwatchColor,
+                      ),
+                    ),
+                  ),
+                )):
             SizedBox(
                 height: MediaQuery.of(context).size.height*.2,
                 child: ChewieListItem(
