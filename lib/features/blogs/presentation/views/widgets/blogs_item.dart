@@ -11,6 +11,19 @@ class BlogItem extends StatelessWidget {
   const BlogItem({super.key, this.onTap, required this.instance});
 final Function()? onTap;
 final Data instance;
+  String getInitials(bankAccountName) {
+    List<String> names = bankAccountName.split(" ");
+    String initials = "";
+    int numWords = names.length;
+
+    if(numWords < names.length) {
+      numWords = names.length;
+    }
+    for(var i = 0; i < numWords; i++){
+      initials += names[i][0];
+    }
+    return initials.toUpperCase();
+  }
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -30,7 +43,7 @@ final Data instance;
                   CircleAvatar(
                     radius: AppConstants.height20(context),
                     backgroundColor: const Color(0xffF93A00),
-                    child: Text("UX",style: TextStyle(
+                    child: Text(getInitials(instance.admin!),style: TextStyle(
                         color: Colors.white,
                         fontSize: MediaQuery.of(context).size.height*.016,
                         fontWeight: FontWeight.w600

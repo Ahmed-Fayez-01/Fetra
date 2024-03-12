@@ -59,6 +59,7 @@ dependencies:
   chewie: ^1.7.1
   intl:
   youtube_player_flutter: ^9.0.0
+  google_sign_in: ^6.2.1
 
 dev_dependencies:
   flutter_test:

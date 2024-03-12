@@ -1,3 +1,4 @@
+import 'package:dartz/dartz_unsafe.dart';
 import 'package:fetra/core/shared_widgets/custom_button.dart';
 import 'package:fetra/core/utils/colors/colors.dart';
 import 'package:fetra/core/utils/constants.dart';
@@ -60,7 +61,7 @@ class _DesignHealthFoodViewBodyState extends State<DesignHealthFoodViewBody> {
                         physics: const NeverScrollableScrollPhysics(),
                         itemCount: context.read<ChangeMealStatusCubit>().currentPage==1? state.model.data!.meal1!.length:context.read<ChangeMealStatusCubit>().currentPage==2?state.model.data!.meal2!.length:state.model.data!.meal3!.length,
                         itemBuilder: (BuildContext context, int index) {
-                          return FoodItem(instance: context.read<ChangeMealStatusCubit>().currentPage==1? state.model.data!.meal1![index]: context.read<ChangeMealStatusCubit>().currentPage==2?state.model.data!.meal2![index]:state.model.data!.meal3![index],);
+                          return FoodItem(instance: context.read<ChangeMealStatusCubit>().currentPage==1? state.model.data!.meal1![index]: context.read<ChangeMealStatusCubit>().currentPage==2?state.model.data!.meal2![index]:state.model.data!.meal3![index], pageNum: context.read<ChangeMealStatusCubit>().currentPage, general: state.model,);
                         }, separatorBuilder: (BuildContext context, int index) {
                         return SizedBox(height: AppConstants.height10(context),);
                       },),
@@ -71,6 +72,44 @@ class _DesignHealthFoodViewBodyState extends State<DesignHealthFoodViewBody> {
                             child: Padding(
                               padding: EdgeInsets.symmetric(horizontal: AppConstants.width20(context)),
                               child: DefaultButton(onPress: (){
+                                if(context.read<ChangeMealStatusCubit>().currentPage==  int.parse(widget.numberOfMeals))
+                                  {
+                                    for(int i=0;i<state.model.data!.meal1!.length;i++)
+                                    {
+                                      if(state.model.data!.meal1![i].quantity>0)
+                                      {
+                                        AppConstants.mealsToDesign.add({
+                                          "food_id":state.model.data!.meal1![i].id,
+                                          "quantity":state.model.data!.meal1![i].quantity,
+                                        });
+                                      }
+                                    }
+                                    for(int i=0;i<state.model.data!.meal2!.length;i++)
+                                    {
+                                      if(state.model.data!.meal2![i].quantity>0)
+                                      {
+                                        AppConstants.mealsToDesign.add({
+                                          "food_id":state.model.data!.meal2![i].id,
+                                          "quantity":state.model.data!.meal2![i].quantity,
+                                        });
+                                      }
+                                    }
+                                    if(widget.numberOfMeals == "3")
+                                    {
+                                      for(int i=0;i<state.model.data!.meal3!.length;i++)
+                                      {
+                                        if(state.model.data!.meal3![i].quantity>0)
+                                        {
+                                          AppConstants.mealsToDesign.add({
+                                            "food_id":state.model.data!.meal3![i].id,
+                                            "quantity":state.model.data!.meal3![i].quantity,
+                                          });
+                                        }
+                                      }
+                                    }
+
+                                  }
+
                                 context.read<ChangeMealStatusCubit>().changeMealPlus(int.parse(widget.numberOfMeals));
                               }, text: context.read<ChangeMealStatusCubit>().currentPage==  int.parse(widget.numberOfMeals)? "Receive the nutritional program" : "Next",borderRadius: AppConstants.sp10(context),),
                             ),

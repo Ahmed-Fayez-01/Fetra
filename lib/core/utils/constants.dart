@@ -9,6 +9,16 @@ import 'package:flutter/material.dart';
 class AppConstants {
   static bool? hasInternet;
   static bool hideMeasure=false;
+  static double proteinMeal1=0;
+  static double proteinMeal2=0;
+  static double proteinMeal3=0;
+  static double fatMeal1=0;
+  static double fatMeal2=0;
+  static double fatMeal3=0;
+  static double carbMeal1=0;
+  static double carbMeal2=0;
+  static double carbMeal3=0;
+  static List mealsToDesign=[];
   static List<trainerData.Data> model=[];
   static List<trainerData.Data> foundedTrainers=[];
   static List<storeData.Data> storeModel=[];
